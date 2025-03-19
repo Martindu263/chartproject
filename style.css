@@ -304,6 +304,17 @@ input[type="radio"]:checked + .radio-label::before {
     input[type="radio"]:checked + .radio-label::before {
         content: "■";
     }
+
+    .agent-input.disabled {
+        background-color: transparent !important;
+        color: #000 !important;
+    }
+
+    input[type="text"].disabled {
+        background-color: transparent !important;
+        color: #000 !important;
+    }
+
 }
 
 /* 响应式布局 */
@@ -320,4 +331,92 @@ input[type="radio"]:checked + .radio-label::before {
     input[type="text"] {
         width: calc(100% - 80px);
     }
+}
+
+/* 委托诉讼代理人相关样式 */
+
+/* 代理人容器样式 */
+.agent-container {
+    position: relative;
+}
+
+/* 代理人选项样式 */
+.agent-option {
+    margin-bottom: 10px;
+}
+
+.no-agent {
+    margin-top: 10px;
+}
+
+/* 代理人详细信息容器 */
+.agent-details {
+    margin: 10px 0;
+}
+
+/* 代理人信息行样式 */
+.agent-info {
+    margin: 8px 0;
+}
+
+/* "有"相关区域的样式 */
+.has-agent-section {
+    padding: 5px;
+}
+
+/* 禁用状态的包装容器 */
+#agentContentWrapper.disabled {
+    background-color: #808080;
+    pointer-events: none;
+}
+
+#agentContentWrapper.disabled input,
+#agentContentWrapper.disabled .radio-label {
+    color: #666;
+    cursor: not-allowed;
+}
+
+#agentContentWrapper.disabled input[type="text"] {
+    background-color: #808080;
+    border-color: #666;
+}
+
+/* 单选按钮样式 */
+.radio-label::before {
+    content: "□";
+    margin-right: 4px;
+}
+
+input[type="radio"]:checked + .radio-label::before {
+    content: "■";
+}
+
+/* 输入框禁用状态样式 */
+.agent-input.disabled {
+    background-color: #808080 !important;
+    color: #333;
+}
+
+/* 代理权限单选按钮禁用状态 */
+.agent-radio.disabled + .radio-label {
+    color: #333;
+}
+
+/* 单选按钮样式 */
+.radio-label::before {
+    content: "□";
+    margin-right: 4px;
+}
+
+input[type="radio"]:checked + .radio-label::before {
+    content: "■";
+}
+
+/* 可切换的单选按钮样式 */
+.toggleable-radio:checked + .radio-label::before {
+    content: "■";
+}
+
+.toggleable-radio + .radio-label::before {
+    content: "□";
 }
