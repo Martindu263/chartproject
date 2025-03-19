@@ -86,12 +86,13 @@ body {
 /* 子表行样式 */
 .cell-title {
     width: 30%;
-    vertical-align: middle;
-    text-align: center;
     padding: 10px;
     border: 1px solid #000;
     font-weight: bold;
     background-color: #f5f5f5;
+    /* 修改以下属性 */
+    vertical-align: middle;  /* 上下居中 */
+    text-align: left;       /* 水平居左 */
 }
 
 .cell-content {
