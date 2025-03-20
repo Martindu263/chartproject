@@ -221,7 +221,631 @@
                     </div>
                 </td>
         </tr>
+
+        <!-- 被告自然人 -->
+        <tr>
+            <td class="cell-title">被告（自然人）</td>
+            <td class="cell-content">
+                <div class="form-row">姓名：<input type="text" class="char-10"></div>
+                <div class="form-row">
+                    性别：
+                    <span class="custom-radio-group">
+                        <input type="radio" id="defendantMale" name="defendantGender" value="男" class="hidden-input">
+                        <label for="defendantMale" class="radio-label">男</label>
+                        <input type="radio" id="defendantFemale" name="defendantGender" value="女" class="hidden-input">
+                        <label for="defendantFemale" class="radio-label">女</label>
+                    </span>
+                </div>
+                <div class="form-row">出生日期：<input type="date" class="custom-date"></div>
+                <div class="form-row">民族：<input type="text" class="char-10"></div>
+                <div class="form-row">工作单位：<input type="text" class="char-30"></div>
+                <div class="form-row">
+                    职务：<input type="text" class="char-10">
+                    联系电话：<input type="text" class="char-15" data-type="phone">
+                </div>
+                <div class="form-row">住所地（户籍所在地）：<input type="text" class="char-30"></div>
+                <div class="form-row">经常居住地：<input type="text" class="char-30"></div>
+            </td>
+        </tr>
+
+        <!-- 被告法人 -->
+        <tr>
+            <td class="cell-title">被告（法人、非法人组织）</td>
+            <td class="cell-content">
+                <div class="form-row">名称：<input type="text" class="char-30"></div>
+                <div class="form-row">住所地（主要办事机构所在地）：<input type="text" class="char-30"></div>
+                <div class="form-row">注册地/登记地：<input type="text" class="char-30"></div>
+                <div class="form-row">
+                    法定代表人/主要负责人：<input type="text" class="char-20">
+                    职务：<input type="text" class="char-10">
+                    联系电话：<input type="text" class="char-15" data-type="phone">
+                </div>
+                <div class="form-row">统一社会信用代码：<input type="text" class="char-20"></div>
+                <div class="checkbox-group">
+                    类型：
+                    <div class="checkbox-row">
+                        <label><input type="checkbox">有限责任公司</label>
+                        <label><input type="checkbox">股份有限公司</label>
+                        <label><input type="checkbox">上市公司</label>
+                        <label><input type="checkbox">其他企业法人</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <label><input type="checkbox">事业单位</label>
+                        <label><input type="checkbox">社会团体</label>
+                        <label><input type="checkbox">基金会</label>
+                        <label><input type="checkbox">社会服务机构</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <label><input type="checkbox">机关法人</label>
+                        <label><input type="checkbox">农村集体经济组织法人</label>
+                        <label><input type="checkbox">城镇农村的合作经济组织法人</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <label><input type="checkbox">基层群众性自治组织法人</label>
+                        <label><input type="checkbox">个人独资企业</label>
+                        <label><input type="checkbox">合伙企业</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <label><input type="checkbox">不具有法人资格的专业服务机构</label>
+                        <label><input type="checkbox">国有</label>
+                        <label><input type="checkbox">控股</label>
+                        <label><input type="checkbox">参股</label>
+                        <label><input type="checkbox">民营</label>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 第三人自然人 -->
+        <tr>
+            <td class="cell-title">第三人（自然人）</td>
+            <td class="cell-content">
+                <div class="form-row">姓名：<input type="text" class="char-10"></div>
+                <div class="form-row">
+                    性别：
+                    <span class="custom-radio-group">
+                        <input type="radio" id="thirdPartyMale" name="thirdPartyGender" value="男" class="hidden-input">
+                        <label for="thirdPartyMale" class="radio-label">男</label>
+                        <input type="radio" id="thirdPartyFemale" name="thirdPartyGender" value="女" class="hidden-input">
+                        <label for="thirdPartyFemale" class="radio-label">女</label>
+                    </span>
+                </div>
+                <div class="form-row">出生日期：<input type="date" class="custom-date"></div>
+                <div class="form-row">民族：<input type="text" class="char-10"></div>
+                <div class="form-row">工作单位：<input type="text" class="char-30"></div>
+                <div class="form-row">
+                    职务：<input type="text" class="char-10">
+                    联系电话：<input type="text" class="char-15" data-type="phone">
+                </div>
+                <div class="form-row">住所地（户籍所在地）：<input type="text" class="char-30"></div>
+                <div class="form-row">经常居住地：<input type="text" class="char-30"></div>
+            </td>
+        </tr>
+
+        <!-- 第三人法人 -->
+        <tr>
+            <td class="cell-title">第三人（法人、非法人组织）</td>
+            <td class="cell-content">
+                <div class="form-row">名称：<input type="text" class="char-30"></div>
+                <div class="form-row">住所地（主要办事机构所在地）：<input type="text" class="char-30"></div>
+                <div class="form-row">注册地/登记地：<input type="text" class="char-30"></div>
+                <div class="form-row">
+                    法定代表人/主要负责人：<input type="text" class="char-20">
+                    职务：<input type="text" class="char-10">
+                    联系电话：<input type="text" class="char-15" data-type="phone">
+                </div>
+                <div class="form-row">统一社会信用代码：<input type="text" class="char-20"></div>
+                <div class="checkbox-group">
+                    类型：
+                    <div class="checkbox-row">
+                        <label><input type="checkbox">有限责任公司</label>
+                        <label><input type="checkbox">股份有限公司</label>
+                        <label><input type="checkbox">上市公司</label>
+                        <label><input type="checkbox">其他企业法人</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <label><input type="checkbox">事业单位</label>
+                        <label><input type="checkbox">社会团体</label>
+                        <label><input type="checkbox">基金会</label>
+                        <label><input type="checkbox">社会服务机构</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <label><input type="checkbox">机关法人</label>
+                        <label><input type="checkbox">农村集体经济组织法人</label>
+                        <label><input type="checkbox">城镇农村的合作经济组织法人</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <label><input type="checkbox">基层群众性自治组织法人</label>
+                        <label><input type="checkbox">个人独资企业</label>
+                        <label><input type="checkbox">合伙企业</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <label><input type="checkbox">不具有法人资格的专业服务机构</label>
+                        <label><input type="checkbox">国有</label>
+                        <label><input type="checkbox">控股</label>
+                        <label><input type="checkbox">参股</label>
+                        <label><input type="checkbox">民营</label>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 诉讼请求和依据 -->
+        <tr>
+            <th class="section-header" colspan="2">诉讼请求和依据</th>
+        </tr>
+
+        <!-- 1. 本金信息 -->
+        <tr>
+            <td class="cell-title">1. 本金</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    截至 <input type="text" class="char-10" style="width: 4em;"> 年
+                    <input type="text" class="char-10" style="width: 3em;"> 月
+                    <input type="text" class="char-10" style="width: 3em;"> 日止，
+                    尚欠本金 <input type="text" class="char-15"> 元
+                    (人民币，下同；如外币需特别注明)
+                </div>
+            </td>
+        </tr>
+
+        <!-- 2. 利息信息 -->
+        <tr>
+            <td class="cell-title">2. 利息</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    截至 <input type="text" class="char-10" style="width: 4em;"> 年
+                    <input type="text" class="char-10" style="width: 3em;"> 月
+                    <input type="text" class="char-10" style="width: 3em;"> 日止，
+                    欠利息 <input type="text" class="char-15"> 元；
+                </div>
+                <div class="form-row">
+                    计算方式：<input type="text" class="char-30">
+                </div>
+                <div class="form-row">
+                    是否请求支付至实际清偿之日止：
+                    <span class="custom-radio-group">
+                        <input type="radio" id="interestUntilPaymentYes" name="interestUntilPayment" value="是" class="hidden-input">
+                        <label for="interestUntilPaymentYes" class="radio-label">是</label>
+                        <input type="radio" id="interestUntilPaymentNo" name="interestUntilPayment" value="否" class="hidden-input">
+                        <label for="interestUntilPaymentNo" class="radio-label">否</label>
+                    </span>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 3. 提前还款或解除合同 -->
+        <tr>
+            <td class="cell-title">3. 是否要求提前还款或解除合同</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="earlyPaymentYes" name="earlyPayment" value="是" class="hidden-input">
+                        <label for="earlyPaymentYes" class="radio-label">是</label>
+                        <label><input type="checkbox">提前还款(加速到期)</label>
+                        <label><input type="checkbox">解除合同</label>
+                    </span>
+                </div>
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="earlyPaymentNo" name="earlyPayment" value="否" class="hidden-input">
+                        <label for="earlyPaymentNo" class="radio-label">否</label>
+                    </span>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 4. 担保权利 -->
+        <tr>
+            <td class="cell-title">4. 是否主张担保权利</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="guaranteeYes" name="guarantee" value="是" class="hidden-input">
+                        <label for="guaranteeYes" class="radio-label">是</label>
+                    </span>
+                    内容：<input type="text" class="char-30">
+                </div>
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="guaranteeNo" name="guarantee" value="否" class="hidden-input">
+                        <label for="guaranteeNo" class="radio-label">否</label>
+                    </span>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 5. 实现债权的费用 -->
+        <tr>
+            <td class="cell-title">5. 是否主张实现债权的费用</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="debtCostYes" name="debtCost" value="是" class="hidden-input">
+                        <label for="debtCostYes" class="radio-label">是</label>
+                    </span>
+                    明细：<input type="text" class="char-30">
+                </div>
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="debtCostNo" name="debtCost" value="否" class="hidden-input">
+                        <label for="debtCostNo" class="radio-label">否</label>
+                    </span>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 6. 其他请求 -->
+        <tr>
+            <td class="cell-title">6. 其他请求</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <input type="text" class="char-30" style="width: 100%;">
+                </div>
+            </td>
+        </tr>
+
+        <!-- 7. 标的总额 -->
+        <tr>
+            <td class="cell-title">7. 标的总额</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <input type="text" class="char-30" style="width: 100%;">
+                </div>
+            </td>
+        </tr>
+
+        <!-- 8. 请求依据 -->
+        <tr>
+            <td class="cell-title">8. 请求依据</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    合同约定：<input type="text" class="char-30" style="width: calc(100% - 80px);">
+                </div>
+                <div class="form-row">
+                    法律规定：<input type="text" class="char-30" style="width: calc(100% - 80px);">
+                </div>
+            </td>
+        </tr>
+
+        <!-- 约定管辖和诉讼保全 -->
+        <tr>
+            <th class="section-header" colspan="2">约定管辖和诉讼保全</th>
+        </tr>
+
+        <!-- 1. 管辖约定信息 -->
+        <tr>
+            <td class="cell-title">1. 有无仲裁、法院管辖约定</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="jurisdictionYes" name="jurisdiction" value="有" class="hidden-input">
+                        <label for="jurisdictionYes" class="radio-label">有</label>
+                    </span>
+                    合同条款及内容：<input type="text" class="char-30">
+                </div>
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="jurisdictionNo" name="jurisdiction" value="无" class="hidden-input">
+                        <label for="jurisdictionNo" class="radio-label">无</label>
+                    </span>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 2. 财产保全措施 -->
+        <tr>
+            <td class="cell-title">2. 是否申请财产保全措施</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    已经诉前保全：
+                    <span class="custom-radio-group">
+                        <input type="radio" id="prePreservationYes" name="prePreservation" value="是" class="hidden-input">
+                        <label for="prePreservationYes" class="radio-label">是</label>
+                        <input type="radio" id="prePreservationNo" name="prePreservation" value="否" class="hidden-input">
+                        <label for="prePreservationNo" class="radio-label">否</label>
+                    </span>
+                </div>
+                <div class="form-row">
+                    申请诉讼保全：
+                    <span class="custom-radio-group">
+                        <input type="radio" id="litigationPreservationYes" name="litigationPreservation" value="是" class="hidden-input">
+                        <label for="litigationPreservationYes" class="radio-label">是</label>
+                        <input type="radio" id="litigationPreservationNo" name="litigationPreservation" value="否" class="hidden-input">
+                        <label for="litigationPreservationNo" class="radio-label">否</label>
+                    </span>
+                </div>
+                <div class="form-row">
+                    保全法院：<input type="text" class="char-20">
+                    保全时间：<input type="date" class="custom-date">
+                </div>
+            </td>
+        </tr>
+
+        <!-- 事实和理由 -->
+        <tr>
+            <th class="section-header" colspan="2">事实和理由</th>
+        </tr>
+
+        <!-- 合同详细信息部分 -->
+        <tr>
+            <th class="section-header" colspan="2">合同详细信息</th>
+        </tr>
+
+        <!-- 1. 合同签订情况 -->
+        <tr>
+            <td class="cell-title">1. 合同签订情况(名称、编号、签订时间、地点等)</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <textarea class="char-30" style="width: 100%; height: 60px;"></textarea>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 2. 签订主体 -->
+        <tr>
+            <td class="cell-title">2. 签订主体</td>
+            <td class="cell-content">
+                <div class="form-row">贷款人：<input type="text" class="char-30"></div>
+                <div class="form-row">借款人：<input type="text" class="char-30"></div>
+            </td>
+        </tr>
+
+        <!-- 3. 借款金额 -->
+        <tr>
+            <td class="cell-title">3. 借款金额</td>
+            <td class="cell-content">
+                <div class="form-row">约定：<input type="text" class="char-30"></div>
+                <div class="form-row">实际提供：<input type="text" class="char-30"></div>
+            </td>
+        </tr>
+
+        <!-- 4. 借款期限 -->
+        <tr>
+            <td class="cell-title">4. 借款期限</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    是否到期：
+                    <span class="custom-radio-group">
+                        <input type="radio" id="isExpiredYes" name="isExpired" value="是" class="hidden-input">
+                        <label for="isExpiredYes" class="radio-label">是</label>
+                        <input type="radio" id="isExpiredNo" name="isExpired" value="否" class="hidden-input">
+                        <label for="isExpiredNo" class="radio-label">否</label>
+                    </span>
+                </div>
+                <div class="form-row">
+                    约定期限：<input type="text" style="width: 3em;"> 年
+                    <input type="text" style="width: 2em;"> 月
+                    <input type="text" style="width: 2em;"> 日起至
+                    <input type="text" style="width: 3em;"> 年
+                    <input type="text" style="width: 2em;"> 月
+                    <input type="text" style="width: 2em;"> 日止
+                </div>
+            </td>
+        </tr>
+
+        <!-- 5. 借款利率 -->
+        <tr>
+            <td class="cell-title">5. 借款利率</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    利率 <input type="text" style="width: 4em;"> %/年(季/月)
+                    (合同条款：第 <input type="text" style="width: 3em;"> 条)
+                </div>
+            </td>
+        </tr>
+
+        <!-- 6. 借款提供时间 -->
+        <tr>
+            <td class="cell-title">6. 借款提供时间</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <input type="text" style="width: 3em;"> 年
+                    <input type="text" style="width: 2em;"> 月
+                    <input type="text" style="width: 2em;"> 日，
+                    <input type="text" class="char-15"> 元
+                </div>
+            </td>
+        </tr>
+
+        <!-- 7. 还款方式 -->
+        <tr>
+            <td class="cell-title">7. 还款方式</td>
+            <td class="cell-content">
+                <div class="checkbox-group">
+                    <div class="checkbox-row"><label><input type="checkbox">等额本息</label></div>
+                    <div class="checkbox-row"><label><input type="checkbox">等额本金</label></div>
+                    <div class="checkbox-row"><label><input type="checkbox">到期一次性还本付息</label></div>
+                    <div class="checkbox-row"><label><input type="checkbox">按月计息、到期一次性还本</label></div>
+                    <div class="checkbox-row"><label><input type="checkbox">按季计息、到期一次性还本</label></div>
+                    <div class="checkbox-row"><label><input type="checkbox">按年计息、到期一次性还本</label></div>
+                    <div class="checkbox-row"><label><input type="checkbox">其他</label></div>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 8. 还款情况 -->
+        <tr>
+            <td class="cell-title">8. 还款情况</td>
+            <td class="cell-content">
+                <div class="form-row">已还本金：<input type="text" class="char-15"> 元</div>
+                <div class="form-row">
+                    已还利息：<input type="text" class="char-15"> 元，
+                    还息至 <input type="text" style="width: 3em;"> 年
+                    <input type="text" style="width: 2em;"> 月
+                    <input type="text" style="width: 2em;"> 日
+                </div>
+            </td>
+        </tr>
+
+        <!-- 9. 是否存在逾期还款 -->
+        <tr>
+            <td class="cell-title">9. 是否存在逾期还款</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="isOverdueYes" name="isOverdue" value="是" class="hidden-input">
+                        <label for="isOverdueYes" class="radio-label">是</label>
+                    </span>
+                    逾期时间：<input type="text" class="char-20"> 至今已逾期
+                </div>
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="isOverdueNo" name="isOverdue" value="否" class="hidden-input">
+                        <label for="isOverdueNo" class="radio-label">否</label>
+                    </span>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 10. 是否签订物的担保合同 -->
+        <tr>
+            <td class="cell-title">10. 是否签订物的担保(抵押、质押)合同</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="hasGuaranteeContractYes" name="hasGuaranteeContract" value="是" class="hidden-input">
+                        <label for="hasGuaranteeContractYes" class="radio-label">是</label>
+                        <input type="radio" id="hasGuaranteeContractNo" name="hasGuaranteeContract" value="否" class="hidden-input">
+                        <label for="hasGuaranteeContractNo" class="radio-label">否</label>
+                    </span>
+                </div>
+                <div class="form-row">签订时间：<input type="date" class="custom-date"></div>
+            </td>
+        </tr>
+
+        <!-- 11. 担保人、担保物 -->
+        <tr>
+            <td class="cell-title">11. 担保人、担保物</td>
+            <td class="cell-content">
+                <div class="form-row">担保人：<input type="text" class="char-30"></div>
+                <div class="form-row">担保物：<input type="text" class="char-30"></div>
+            </td>
+        </tr>
+
+        <!-- 12. 是否最高额担保 -->
+        <tr>
+            <td class="cell-title">12. 是否最高额担保(抵押、质押)</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="isMaxGuaranteeYes" name="isMaxGuarantee" value="是" class="hidden-input">
+                        <label for="isMaxGuaranteeYes" class="radio-label">是</label>
+                        <input type="radio" id="isMaxGuaranteeNo" name="isMaxGuarantee" value="否" class="hidden-input">
+                        <label for="isMaxGuaranteeNo" class="radio-label">否</label>
+                    </span>
+                </div>
+                <div class="form-row">担保债权的确定时间：<input type="date" class="custom-date"></div>
+                <div class="form-row">担保额度：<input type="text" class="char-20"></div>
+            </td>
+        </tr>
+
+        <!-- 13. 是否办理抵押、质押登记 -->
+        <tr>
+            <td class="cell-title">13. 是否办理抵押、质押登记</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="hasRegistrationYes" name="hasRegistration" value="是" class="hidden-input">
+                        <label for="hasRegistrationYes" class="radio-label">是</label>
+                    </span>
+                    <label><input type="checkbox">正式登记</label>
+                    <label><input type="checkbox">预告登记</label>
+                </div>
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="hasRegistrationNo" name="hasRegistration" value="否" class="hidden-input">
+                        <label for="hasRegistrationNo" class="radio-label">否</label>
+                    </span>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 14. 是否签订保证合同 -->
+        <tr>
+            <td class="cell-title">14. 是否签订保证合同</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="hasWarrantyContractYes" name="hasWarrantyContract" value="是" class="hidden-input">
+                        <label for="hasWarrantyContractYes" class="radio-label">是</label>
+                    </span>
+                    签订时间：<input type="date" class="custom-date">
+                    保证人：<input type="text" class="char-20">
+                </div>
+                <div class="form-row">主要内容：<input type="text" class="char-30"></div>
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="hasWarrantyContractNo" name="hasWarrantyContract" value="否" class="hidden-input">
+                        <label for="hasWarrantyContractNo" class="radio-label">否</label>
+                    </span>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 15. 保证方式 -->
+        <tr>
+            <td class="cell-title">15. 保证方式</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <label><input type="checkbox">一般保证</label>
+                    <label><input type="checkbox">连带责任保证</label>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 16. 其他担保方式 -->
+        <tr>
+            <td class="cell-title">16. 其他担保方式</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="hasOtherGuaranteeYes" name="hasOtherGuarantee" value="是" class="hidden-input">
+                        <label for="hasOtherGuaranteeYes" class="radio-label">是</label>
+                    </span>
+                    形式：<input type="text" class="char-20">
+                    签订时间：<input type="date" class="custom-date">
+                </div>
+                <div class="form-row">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="hasOtherGuaranteeNo" name="hasOtherGuarantee" value="否" class="hidden-input">
+                        <label for="hasOtherGuaranteeNo" class="radio-label">否</label>
+                    </span>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 17. 其他需要说明的内容 -->
+        <tr>
+            <td class="cell-title">17. 其他需要说明的内容(可另附页)</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <textarea class="char-30" style="width: 100%; height: 60px;"></textarea>
+                </div>
+            </td>
+        </tr>
+
+        <!-- 18. 证据清单 -->
+        <tr>
+            <td class="cell-title">18. 证据清单(可另附页)</td>
+            <td class="cell-content">
+                <div class="form-row">
+                    <textarea class="char-30" style="width: 100%; height: 60px;"></textarea>
+                </div>
+            </td>
+        </tr>
     </table>
+
+    <!-- 具状人签名日期 -->
+    <div style="margin-top: 40px; margin-right: 25%;">
+        <p style="font-family: 'SimSun', serif; font-size: 18pt; font-weight: bold; margin-bottom: 20px; text-align: right;">
+            具状人(签字、盖章)：
+        </p>
+        <p style="font-family: 'SimSun', serif; font-size: 18pt; font-weight: bold; text-align: right;">
+            日期：
+        </p>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
