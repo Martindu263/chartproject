@@ -59,6 +59,11 @@ body {
     position: relative;
 }
 
+/* 未完成单元格的样式 */
+.cell-content.incomplete {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
 /* 说明部分样式 */
 .explanation-row {
     border: 1px solid #000;
@@ -139,7 +144,6 @@ input[type="text"],
     content: "□";
     margin-right: 4px;
     font-size: 14px;
-    transition: content 0.2s ease;
 }
 
 input[type="radio"]:checked + .radio-label::before {
@@ -194,26 +198,6 @@ input[type="radio"]:checked + .radio-label::before {
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-/* 完成指示器样式 */
-.completion-indicator {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    font-size: 16px;
-    color: #4CAF50;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.completion-indicator.complete {
-    opacity: 1;
 }
 
 /* 表单验证样式 */
@@ -315,8 +299,8 @@ input:invalid:focus {
         padding: 0;
     }
 
-    .completion-indicator {
-        display: none !important;
+    .cell-content.incomplete {
+        background-color: transparent !important;
     }
 
     .error-message {
@@ -347,11 +331,6 @@ input:invalid:focus {
 
 /* 高对比度模式 */
 @media (prefers-contrast: high) {
-    .completion-indicator.complete {
-        color: #000;
-        border: 2px solid currentColor;
-    }
-
     .error-message {
         color: #000;
         font-weight: bold;

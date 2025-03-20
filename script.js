@@ -1,37 +1,44 @@
 /**
  * FormHandler 类 - 处理表单的所有交互逻辑
- * 处理表单中的选择、验证、状态管理等功能
  */
 class FormHandler {
     /**
      * 构造函数 - 初始化表单处理器
      */
     constructor() {
-        // 存储所有互斥选择配置
         this.toggleConfigs = new Map();
-        // 初始化处理器
         this.init();
     }
 
     /**
      * 初始化方法
-     * 在DOM加载完成后设置所有必要的处理器和监听器
      */
     init() {
         document.addEventListener('DOMContentLoaded', () => {
             this.setupAllToggleGroups();
             this.setupFormValidation();
-            this.addCompletionIndicators();
-            this.setupInputValidation();
+            this.setupCellValidation();
             this.initializeDateFields();
+            this.setupCurrentDateTime();
+        });
+    }
+
+    /**
+     * 设置当前日期时间
+     */
+    setupCurrentDateTime() {
+        const dateInputs = document.querySelectorAll('input[type="date"]');
+        const currentDate = new Date().toISOString().split('T')[0];
+
+        dateInputs.forEach(input => {
+            if (!input.value) {
+                input.value = currentDate;
+            }
         });
     }
 
     /**
      * 添加新的互斥选择配置
-     * @param {String} groupName - 互斥组的唯一标识名
-     * @param {Object} config - 配置对象
-     * @returns {FormHandler} - 返回实例本身，支持链式调用
      */
     addToggleConfig(groupName, config) {
         if (!this.validateConfig(config)) {
@@ -40,7 +47,6 @@ class FormHandler {
         }
         this.toggleConfigs.set(groupName, {
             ...config,
-            // 扩展配置，添加默认值
             dependentGroups: config.dependentGroups || [],
             validationRules: config.validationRules || {}
         });
@@ -49,8 +55,6 @@ class FormHandler {
 
     /**
      * 验证配置对象
-     * @param {Object} config - 配置对象
-     * @returns {Boolean} - 验证结果
      */
     validateConfig(config) {
         const requiredFields = ['positiveRadioId', 'negativeRadioId', 'inputSelector'];
@@ -68,99 +72,46 @@ class FormHandler {
 
     /**
      * 设置单个互斥选择组
-     * @param {String} groupName - 组名
-     * @param {Object} config - 配置对象
      */
     setupToggleGroup(groupName, config) {
-        const elements = {
-            positiveRadio: document.getElementById(config.positiveRadioId),
-            negativeRadio: document.getElementById(config.negativeRadioId),
-            inputs: document.querySelectorAll(config.inputSelector)
-        };
+        const positiveRadio = document.getElementById(config.positiveRadioId);
+        const negativeRadio = document.getElementById(config.negativeRadioId);
+        const inputs = document.querySelectorAll(config.inputSelector);
 
-        if (!this.validateElements(elements)) {
+        if (!positiveRadio || !negativeRadio) {
             console.warn(`Toggle elements not found for group: ${groupName}`);
             return;
         }
 
-        this.setupToggleHandlers(groupName, elements, config);
-        this.initializeGroupState(elements, config);
-    }
-
-    /**
-     * 验证DOM元素
-     * @param {Object} elements - DOM元素对象
-     * @returns {Boolean} - 验证结果
-     */
-    validateElements(elements) {
-        return elements.positiveRadio &&
-               elements.negativeRadio &&
-               elements.inputs.length > 0;
+        this.setupToggleHandlers(positiveRadio, negativeRadio, inputs, config);
+        this.initializeGroupState(negativeRadio, inputs);
     }
 
     /**
      * 设置互斥选择处理器
-     * @param {String} groupName - 组名
-     * @param {Object} elements - DOM元素对象
-     * @param {Object} config - 配置对象
      */
-    setupToggleHandlers(groupName, elements, config) {
-        const { positiveRadio, negativeRadio, inputs } = elements;
+    setupToggleHandlers(positiveRadio, negativeRadio, inputs, config) {
+        const handleRadioClick = (clickedRadio, otherRadio) => {
+            if (clickedRadio.checked) {
+                otherRadio.checked = false;
 
-        const handlers = {
-            /**
-             * 禁用输入字段
-             */
-            disableInputs: () => {
-                this.disableElementGroup(inputs);
-                if (config.dependentGroups) {
-                    this.handleDependentGroups(config.dependentGroups, true);
+                if (clickedRadio === negativeRadio) {
+                    this.disableElementGroup(inputs);
+                } else {
+                    this.enableElementGroup(inputs);
                 }
-            },
 
-            /**
-             * 启用输入字段
-             */
-            enableInputs: () => {
-                this.enableElementGroup(inputs);
-                if (config.dependentGroups) {
-                    this.handleDependentGroups(config.dependentGroups, false);
-                }
-            },
-
-            /**
-             * 处理单选按钮点击
-             * @param {HTMLElement} clickedRadio - 被点击的单选按钮
-             * @param {HTMLElement} otherRadio - 另一个单选按钮
-             */
-            handleRadioClick: (clickedRadio, otherRadio) => {
-                if (clickedRadio.checked) {
-                    otherRadio.checked = false;
-
-                    if (clickedRadio === negativeRadio) {
-                        handlers.disableInputs();
-                    } else {
-                        handlers.enableInputs();
-                    }
-
-                    this.updateGroupCompletionStatus(groupName);
-                }
+                // 触发单元格验证
+                this.validateCell(clickedRadio.closest('.cell-content'));
             }
         };
 
-        // 设置点击事件监听器
-        positiveRadio.addEventListener('click', () => {
-            handlers.handleRadioClick(positiveRadio, negativeRadio);
-        });
-
-        negativeRadio.addEventListener('click', () => {
-            handlers.handleRadioClick(negativeRadio, positiveRadio);
-        });
+        positiveRadio.addEventListener('click', () => handleRadioClick(positiveRadio, negativeRadio));
+        negativeRadio.addEventListener('click', () => handleRadioClick(negativeRadio, positiveRadio));
     }
 
     /**
      * 禁用元素组
-     * @param {NodeList} elements - 要禁用的元素集合
      */
     disableElementGroup(elements) {
         elements.forEach(element => {
@@ -175,7 +126,6 @@ class FormHandler {
 
     /**
      * 启用元素组
-     * @param {NodeList} elements - 要启用的元素集合
      */
     enableElementGroup(elements) {
         elements.forEach(element => {
@@ -185,35 +135,11 @@ class FormHandler {
     }
 
     /**
-     * 处理依赖组
-     * @param {Array} dependentGroups - 依赖组配置数组
-     * @param {Boolean} disable - 是否禁用
-     */
-    handleDependentGroups(dependentGroups, disable) {
-        dependentGroups.forEach(groupName => {
-            const config = this.toggleConfigs.get(groupName);
-            if (config) {
-                const elements = document.querySelectorAll(config.inputSelector);
-                if (disable) {
-                    this.disableElementGroup(elements);
-                } else {
-                    this.enableElementGroup(elements);
-                }
-            }
-        });
-    }
-
-    /**
      * 初始化组状态
-     * @param {Object} elements - DOM元素对象
-     * @param {Object} config - 配置对象
      */
-    initializeGroupState(elements, config) {
-        if (elements.negativeRadio.checked) {
-            this.disableElementGroup(elements.inputs);
-            if (config.dependentGroups) {
-                this.handleDependentGroups(config.dependentGroups, true);
-            }
+    initializeGroupState(negativeRadio, inputs) {
+        if (negativeRadio.checked) {
+            this.disableElementGroup(inputs);
         }
     }
 
@@ -221,11 +147,11 @@ class FormHandler {
      * 设置表单验证
      */
     setupFormValidation() {
-        // 设置不同类型输入的验证
+        // 设置输入验证
         const validationTypes = {
-            'phone': (value) => /^[\d-]*$/.test(value),
-            'number': (value) => /^\d*$/.test(value),
-            'email': (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+            'phone': value => /^[\d-]*$/.test(value),
+            'email': value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+            'number': value => /^\d*$/.test(value)
         };
 
         Object.entries(validationTypes).forEach(([type, validator]) => {
@@ -244,61 +170,81 @@ class FormHandler {
     }
 
     /**
-     * 添加完成状态指示器
+     * 设置单元格验证
      */
-    addCompletionIndicators() {
-        document.querySelectorAll('.cell-content').forEach(cell => {
-            if (!cell.querySelector('.completion-indicator')) {
-                const indicator = document.createElement('span');
-                indicator.className = 'completion-indicator';
-                cell.appendChild(indicator);
-            }
+    setupCellValidation() {
+        const cells = document.querySelectorAll('.cell-content');
+
+        cells.forEach(cell => {
+            const inputs = cell.querySelectorAll('input[type="text"], input[type="date"], select');
+            const radios = cell.querySelectorAll('input[type="radio"]');
+
+            // 初始验证
+            this.validateCell(cell);
+
+            // 监听输入变化
+            inputs.forEach(input => {
+                input.addEventListener('input', () => this.validateCell(cell));
+                input.addEventListener('change', () => this.validateCell(cell));
+            });
+
+            // 监听单选按钮变化
+            radios.forEach(radio => {
+                radio.addEventListener('change', () => this.validateCell(cell));
+            });
         });
     }
 
     /**
-     * 更新组完成状态
-     * @param {String} groupName - 组名
+     * 验证单元格
      */
-    updateGroupCompletionStatus(groupName) {
-        const config = this.toggleConfigs.get(groupName);
-        if (!config) return;
+    validateCell(cell) {
+        if (!cell) return;
 
-        const elements = {
-            cell: document.getElementById(config.positiveRadioId).closest('.cell-content'),
-            inputs: document.querySelectorAll(config.inputSelector),
-            negativeRadio: document.getElementById(config.negativeRadioId)
-        };
+        const inputs = cell.querySelectorAll('input[type="text"], input[type="date"], select');
+        const radios = cell.querySelectorAll('input[type="radio"]');
 
-        const indicator = elements.cell.querySelector('.completion-indicator');
-        let isComplete = elements.negativeRadio.checked;
+        // 检查是否有"否"或"无"被选中
+        const negativeChecked = Array.from(radios).some(radio =>
+            (radio.id === 'noAgent' || radio.id === 'rejectElectronic') && radio.checked
+        );
 
-        if (!isComplete) {
-            isComplete = Array.from(elements.inputs).every(input => {
-                if (input.disabled) return true;
-                if (input.type === 'radio' || input.type === 'checkbox') {
-                    return !input.required || input.checked;
-                }
-                return !input.required || input.value.trim() !== '';
-            });
+        // 如果选择了"否"或"无"，则认为该单元格已完成
+        if (negativeChecked) {
+            cell.classList.remove('incomplete');
+            return;
         }
 
-        this.updateCompletionIndicator(indicator, isComplete);
+        // 检查所有输入框是否都已填写
+        const allFilled = Array.from(inputs).every(input => {
+            // 如果输入框被禁用，则不检查
+            if (input.disabled) return true;
+            // 检查是否有值
+            return input.value.trim() !== '';
+        });
+
+        // 检查相关单选按钮是否已选择
+        const radioGroupsComplete = this.checkRadioGroups(cell);
+
+        // 更新单元格状态
+        if (allFilled && radioGroupsComplete) {
+            cell.classList.remove('incomplete');
+        } else {
+            cell.classList.add('incomplete');
+        }
     }
 
     /**
-     * 更新完成指示器
-     * @param {HTMLElement} indicator - 指示器元素
-     * @param {Boolean} isComplete - 是否完成
+     * 检查单选按钮组
      */
-    updateCompletionIndicator(indicator, isComplete) {
-        if (isComplete) {
-            indicator.classList.add('complete');
-            indicator.textContent = '✓';
-        } else {
-            indicator.classList.remove('complete');
-            indicator.textContent = '';
-        }
+    checkRadioGroups(cell) {
+        const radioGroups = cell.querySelectorAll('.custom-radio-group');
+
+        return Array.from(radioGroups).every(group => {
+            const radios = group.querySelectorAll('input[type="radio"]');
+            // 检查组内是否有选中的单选按钮
+            return Array.from(radios).some(radio => radio.checked);
+        });
     }
 
     /**
@@ -319,7 +265,7 @@ class FormHandler {
 // 创建表单处理器实例
 const formHandler = new FormHandler();
 
-// 添加配置示例
+// 添加配置
 formHandler
     .addToggleConfig('agentGroup', {
         positiveRadioId: 'hasAgent',
