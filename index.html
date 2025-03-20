@@ -63,7 +63,9 @@
                 <div class="form-row">工作单位：<input type="text" class="char-30"></div>
                 <div class="form-row">
                     职务：<input type="text" class="char-10">
-                    联系电话：<input type="text" class="char-15">
+                    <div class="form-row">
+                        联系电话：<input type="text" class="char-15" data-type="phone" required>
+                    </div>
                 </div>
                 <div class="form-row">住所地（户籍所在地）：<input type="text" class="char-30"></div>
                 <div class="form-row">经常居住地：<input type="text" class="char-30"></div>
@@ -77,7 +79,9 @@
                         <option value="护照">护照</option>
                     </select>
                 </div>
-                <div class="form-row">证件号码：<input type="text" class="char-20"></div>
+                <div class="form-row">
+                        证件号码：<input type="text" class="char-15" data-type="phone" required>
+                    </div>
             </td>
         </tr>
 
@@ -133,36 +137,38 @@
         <tr>
             <td class="cell-title">委托诉讼代理人</td>
             <td class="cell-content">
-                <div class="toggle-option-section">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="hasAgent" name="hasAgent" value="有" class="hidden-input toggleable-radio">
-                        <label for="hasAgent" class="radio-label">有</label>
-                    </span>
-
-                    <div class="input-group">
-                        <div class="form-row">姓名：<input type="text" class="char-10 agent-input"></div>
-                        <div class="form-row">
-                            单位：<input type="text" class="char-20 agent-input">
-                            职务：<input type="text" class="char-10 agent-input">
-                            联系电话：<input type="text" class="char-15 agent-input">
-                        </div>
-                    <div class="form-row">
-                        代理权限：
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
                         <span class="custom-radio-group">
-                            <input type="radio" id="generalAuth" name="authority" value="一般授权" class="hidden-input agent-input">
-                            <label for="generalAuth" class="radio-label">一般授权</label>
-                            <input type="radio" id="specialAuth" name="authority" value="特别授权" class="hidden-input agent-input">
-                            <label for="specialAuth" class="radio-label">特别授权</label>
+                            <input type="radio" id="hasAgent" name="hasAgent" value="有" class="hidden-input toggleable-radio">
+                            <label for="hasAgent" class="radio-label">有</label>
+                        </span>
+
+                        <div class="input-group agent-inputs">
+                            <div class="form-row">姓名：<input type="text" class="char-10 agent-input" required></div>
+                            <div class="form-row">
+                                单位：<input type="text" class="char-20 agent-input" required>
+                                职务：<input type="text" class="char-10 agent-input" required>
+                                联系电话：<input type="text" class="char-15 agent-input" data-type="phone" required>
+                            </div>
+                            <div class="form-row">
+                                代理权限：
+                                <span class="custom-radio-group agent-authority-group">
+                                    <input type="radio" id="generalAuth" name="authority" value="一般授权" class="hidden-input agent-input">
+                                    <label for="generalAuth" class="radio-label">一般授权</label>
+                                    <input type="radio" id="specialAuth" name="authority" value="特别授权" class="hidden-input agent-input">
+                                    <label for="specialAuth" class="radio-label">特别授权</label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="noAgent" name="hasAgent" value="无" class="hidden-input toggleable-radio">
+                            <label for="noAgent" class="radio-label">无</label>
                         </span>
                     </div>
-                    </div>
-                </div>
-
-                <div class="toggle-option">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="noAgent" name="hasAgent" value="无" class="hidden-input toggleable-radio">
-                        <label for="noAgent" class="radio-label">无</label>
-                    </span>
                 </div>
             </td>
         </tr>
@@ -181,37 +187,39 @@
         <tr>
             <td class="cell-title">是否接受电子送达</td>
             <td class="cell-content">
-                <div class="toggle-option-section">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="acceptElectronic" name="acceptElectronic" value="是" class="hidden-input toggleable-radio">
-                        <label for="acceptElectronic" class="radio-label">是</label>
-                    </span>
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="acceptElectronic" name="acceptElectronic" value="是" class="hidden-input toggleable-radio">
+                            <label for="acceptElectronic" class="radio-label">是</label>
+                        </span>
 
-                    <div class="input-group">
-                        <div class="form-row">
-                            方式：
-                            <div class="delivery-method-row">
-                                <label>短信<input type="text" class="char-15 delivery-input"></label>
-                                <label>微信<input type="text" class="char-15 delivery-input"></label>
-                                <label>传真<input type="text" class="char-15 delivery-input"></label>
-                            </div>
-                            <div class="delivery-method-row">
-                                <label>邮箱<input type="text" class="char-30 delivery-input"></label>
-                            </div>
-                            <div class="delivery-method-row">
-                                <label>其他<input type="text" class="char-20 delivery-input"></label>
+                        <div class="input-group">
+                            <div class="form-row">
+                                方式：
+                                <div class="delivery-method-row">
+                                    <label>短信<input type="text" class="char-15 electronic-delivery-input" data-type="sms" required></label>
+                                    <label>微信<input type="text" class="char-15 electronic-delivery-input" required></label>
+                                    <label>传真<input type="text" class="char-15 electronic-delivery-input" data-type="fax" required></label>
+                                </div>
+                                <div class="delivery-method-row">
+                                    <label>邮箱<input type="text" class="char-30 electronic-delivery-input" data-type="email" required></label>
+                                    </div>
+                                    <div class="delivery-method-row">
+                                        <label>其他<input type="text" class="char-20 electronic-delivery-input"></label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="toggle-option">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="rejectElectronic" name="acceptElectronic" value="否" class="hidden-input toggleable-radio">
-                        <label for="rejectElectronic" class="radio-label">否</label>
-                    </span>
-                </div>
-            </td>
+                        <div class="toggle-option">
+                            <span class="custom-radio-group">
+                                <input type="radio" id="rejectElectronic" name="acceptElectronic" value="否" class="hidden-input toggleable-radio">
+                                <label for="rejectElectronic" class="radio-label">否</label>
+                            </span>
+                        </div>
+                    </div>
+                </td>
         </tr>
     </table>
     <script src="script.js"></script>

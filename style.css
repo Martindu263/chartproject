@@ -5,6 +5,7 @@ body {
     line-height: 1.5;
     margin: 20px;
     padding: 0;
+    color: #333;
 }
 
 /* 标题样式 */
@@ -22,7 +23,7 @@ body {
     margin-bottom: 30px;
 }
 
-/* 表格样式 */
+/* 表格基础样式 */
 .main-table {
     width: 100%;
     border-collapse: collapse;
@@ -30,6 +31,7 @@ body {
     table-layout: fixed;
 }
 
+/* 表格头部样式 */
 .section-header {
     font-size: 14pt;
     font-weight: bold;
@@ -54,6 +56,7 @@ body {
     padding: 10px;
     border: 1px solid #000;
     vertical-align: top;
+    position: relative;
 }
 
 /* 说明部分样式 */
@@ -78,6 +81,7 @@ body {
 .warning {
     font-weight: bold;
     margin: 15px 0;
+    color: #ff4444;
 }
 
 /* 表单行样式 */
@@ -89,17 +93,18 @@ body {
     gap: 10px;
 }
 
-/* 输入框样式 */
+/* 输入框基础样式 */
 input[type="text"],
 .custom-date,
 .custom-select {
     font-family: "SimSun", serif;
     font-size: 9.5pt;
-    padding: 2px 4px;
+    padding: 4px 8px;
     border: none;
     border-bottom: 1px solid #999;
-    background-color: #f9f9f9;
+    background-color: #fff;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 /* 字符宽度类 */
@@ -127,15 +132,19 @@ input[type="text"],
     display: inline-flex;
     align-items: center;
     margin-right: 20px;
+    user-select: none;
 }
 
 .radio-label::before {
     content: "□";
     margin-right: 4px;
+    font-size: 14px;
+    transition: content 0.2s ease;
 }
 
 input[type="radio"]:checked + .radio-label::before {
     content: "■";
+    color: #1a73e8;
 }
 
 /* 复选框组样式 */
@@ -154,11 +163,19 @@ input[type="radio"]:checked + .radio-label::before {
     display: inline-flex;
     align-items: center;
     gap: 4px;
+    user-select: none;
 }
 
 /* 切换选项样式 */
+.toggle-option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .toggle-option-section {
     margin-bottom: 15px;
+    position: relative;
 }
 
 .input-group {
@@ -179,46 +196,78 @@ input[type="radio"]:checked + .radio-label::before {
     gap: 8px;
 }
 
+/* 完成指示器样式 */
+.completion-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    color: #4CAF50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.completion-indicator.complete {
+    opacity: 1;
+}
+
+/* 表单验证样式 */
+input[required]:not(.disabled):not(:focus):invalid {
+    border-bottom-color: #ff4444;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 0.9em;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
 /* 禁用状态样式 */
 .disabled {
-    background-color: #f0f0f0 !important;
-    color: #666;
+    background-color: #f5f5f5 !important;
+    color: #999 !important;
     cursor: not-allowed;
+    border-bottom-color: #ddd !important;
 }
 
-input[type="text"].disabled {
-    background-color: #f0f0f0 !important;
-    border-color: #ccc;
+/* 输入框交互效果 */
+input[type="text"]:not(.disabled):hover,
+.custom-date:not(.disabled):hover,
+.custom-select:not(.disabled):hover {
+    background-color: #f8f9fa;
 }
 
-/* 打印样式 */
-@media print {
-    body {
-        margin: 0;
-        padding: 0;
-    }
+input[type="text"]:not(.disabled):focus,
+.custom-date:not(.disabled):focus,
+.custom-select:not(.disabled):focus {
+    outline: none;
+    border-bottom-color: #1a73e8;
+    background-color: #fff;
+    box-shadow: 0 1px 0 0 #1a73e8;
+}
 
-    input[type="text"],
-    .custom-date,
-    .custom-select {
-        border-bottom: none !important;
-        background-color: transparent !important;
-    }
+/* 必填字段标记 */
+.form-row label.required::after {
+    content: '*';
+    color: #ff4444;
+    margin-left: 4px;
+}
 
-    .disabled {
-        background-color: transparent !important;
-        color: #000 !important;
-    }
+/* 验证状态动画 */
+@keyframes validationShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
 
-    .radio-label::before {
-        color: #000;
-    }
-
-    .checkbox-row input[type="checkbox"] {
-        -webkit-appearance: none;
-        appearance: none;
-        border: 1px solid #000;
-    }
+input:invalid:focus {
+    animation: validationShake 0.3s ease-in-out;
 }
 
 /* 响应式布局 */
@@ -259,18 +308,75 @@ input[type="text"].disabled {
     }
 }
 
-/* 表单验证样式 */
-input:invalid {
-    border-bottom-color: #ff4444;
+/* 打印样式 */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .completion-indicator {
+        display: none !important;
+    }
+
+    .error-message {
+        display: none !important;
+    }
+
+    input[type="text"],
+    .custom-date,
+    .custom-select {
+        border: none !important;
+        background-color: transparent !important;
+    }
+
+    .disabled {
+        color: transparent !important;
+        background-color: transparent !important;
+    }
+
+    input[required]::after {
+        display: none !important;
+    }
+
+    .radio-label::before {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
 }
 
-.error-message {
-    color: #ff4444;
-    font-size: 0.9em;
-    margin-top: 4px;
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+    .completion-indicator.complete {
+        color: #000;
+        border: 2px solid currentColor;
+    }
+
+    .error-message {
+        color: #000;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    .custom-date,
+    .custom-select {
+        border-bottom: 2px solid #000;
+    }
+
+    .radio-label::before {
+        border: 2px solid #000;
+    }
 }
 
-/* 工具提示样式 */
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* 工具提示 */
 .tooltip {
     position: relative;
     display: inline-block;
@@ -298,37 +404,12 @@ input:invalid {
     opacity: 1;
 }
 
-/* 动画效果 */
-.form-row input,
-.form-row select {
-    transition: border-color 0.3s, background-color 0.3s;
-}
-
-.form-row input:focus,
-.form-row select:focus {
+/* 焦点状态增强 */
+:focus {
     outline: none;
-    border-bottom-color: #1a73e8;
-    background-color: #f8f9fa;
 }
 
-/* 辅助功能样式 */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-
-/* 高对比度模式 */
-@media (prefers-contrast: high) {
-    input[type="text"],
-    .custom-date,
-    .custom-select {
-        border-bottom: 2px solid #000;
-    }
-
-    .disabled {
-        background-color: #000 !important;
-        color: #fff !important;
-    }
+:focus-visible {
+    outline: 2px solid #1a73e8;
+    outline-offset: 2px;
 }
