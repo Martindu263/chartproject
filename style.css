@@ -7,7 +7,7 @@ body {
     padding: 0;
 }
 
-/* 主标题 */
+/* 标题样式 */
 .main-title {
     font-size: 22pt;
     font-weight: bold;
@@ -15,7 +15,6 @@ body {
     margin: 20px 0 10px;
 }
 
-/* 副标题 */
 .sub-title {
     font-size: 18pt;
     font-weight: bold;
@@ -23,7 +22,7 @@ body {
     margin-bottom: 30px;
 }
 
-/* 主表格 */
+/* 表格样式 */
 .main-table {
     width: 100%;
     border-collapse: collapse;
@@ -31,7 +30,6 @@ body {
     table-layout: fixed;
 }
 
-/* 表头样式 */
 .section-header {
     font-size: 14pt;
     font-weight: bold;
@@ -41,58 +39,14 @@ body {
     border: 1px solid #000;
 }
 
-/* 说明部分样式 */
-.explanation-row {
-    border: 1px solid #000;
-    padding: 10px;
-}
-
-.explanation-content {
-    display: block;
-    width: 100%;
-}
-
-.explanation-content p {
-    margin: 8px 0;
-    line-height: 1.8;
-}
-
-/* 说明标题样式 */
-.explanation-title {
-    float: left;
-    margin-right: 5px;
-    font-weight: bold;
-}
-
-/* 说明内容样式 */
-.explanation-text {
-    display: block;
-    margin-left: 3em;
-}
-
-/* 第一行特殊处理 */
-.explanation-first-line {
-    margin-left: 0;
-    display: flex;
-}
-
-.warning {
-    color: #000000;
-    font-weight: bold;
-    margin-left: 3em;
-    margin: 15px 0;
-}
-
-/* 子表行样式 */
+/* 单元格样式 */
 .cell-title {
     width: 30%;
     padding: 10px;
     border: 1px solid #000;
     font-weight: bold;
     background-color: #f5f5f5;
-    /* 修改以下属性 */
-    vertical-align: middle;  /* 上下居中 */
-    text-align: left;       /* 水平居左 */
+    vertical-align: middle;
 }
 
 .cell-content {
@@ -102,111 +56,59 @@ body {
     vertical-align: top;
 }
 
-/* 单元格内容样式 */
-.cell-content div {
-    padding: 6px 0;                    /* 设置内边距 */
-    border-bottom: 1px solid #ddd;     /* 添加底部边框 */
+/* 说明部分样式 */
+.explanation-row {
+    border: 1px solid #000;
+    padding: 10px;
 }
 
-.cell-content div:last-child {
-    border-bottom: none;
+.explanation-content {
+    width: 100%;
 }
 
-input[type="text"] {
-    font-family: "SimSun", serif;      /* 使用宋体 */
-    font-size: 9.5pt;                  /* 设置字体大小 */
-    font-weight: normal;               /* 确保字体不加粗 */
-    padding: 2px 4px;                  /* 设置内边距 */
-    border: none;                      /* 移除边框 */
-    border-bottom: 1px solid #999;     /* 添加底部边框 */
-    background-color: #f9f9f9;         /* 设置背景色 */
-    box-sizing: border-box;            /* 设置盒模型 */
-    word-wrap: break-word;             /* 允许单词换行 */
-    word-break: break-all;             /* 允许在任意字符间换行 */
+.explanation-title {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.explanation-text {
+    margin-left: 3em;
+}
+
+.warning {
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* 表单行样式 */
+.form-row {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* 输入框样式 */
+input[type="text"],
+.custom-date,
+.custom-select {
+    font-family: "SimSun", serif;
+    font-size: 9.5pt;
+    padding: 2px 4px;
+    border: none;
+    border-bottom: 1px solid #999;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
 }
 
 /* 字符宽度类 */
-.char-2 {
-    width: calc(2em + 8px);
-}
+.char-10 { width: calc(10em + 8px); }
+.char-15 { width: calc(15em + 8px); }
+.char-20 { width: calc(20em + 8px); }
+.char-30 { width: calc(30em + 8px); }
 
-.char-3 {
-    width: calc(3em + 8px);
-}
-
-.char-4 {
-    width: calc(4em + 8px);
-}
-
-.char-10 {
-    width: calc(10em + 8px);           /* 设置10个字符的宽度 */
-}
-
-.char-15 {
-    width: calc(15em + 8px);
-}
-
-.char-20 {
-    width: calc(20em + 8px);
-}
-
-.char-30 {
-    width: calc(30em + 8px);
-}
-
-/* 弹性布局容器 */
-.flex-row {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px;
-    padding: 6px 0;
-    border-bottom: 1px solid #ddd;
-    background-color: #f9f9f9;
-}
-
-.flex-item {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-}
-
-.short-input {
-    width: 40px !important;
-    margin: 0 5px;
-    background-color: #f9f9f9;
-}
-
-input[type="checkbox"] {
-    width: 14px;
-    height: 14px;
-    margin: 0 5px 0 0;
-    vertical-align: middle;
-}
-
-/* 标签样式 */
-label {
-    margin-right: 15px;
-    display: inline-block;
-}
-
-/* 复选框区域背景 */
-.checkbox-group div {
-    margin: 5px 0;
-    padding: 3px 5px;
-    background-color: #f9f9f9;
-}
-
-.checkbox-group div {
-    margin: 5px 0;
-}
-
-.checkbox-group label {
-    margin-right: 15px;
-    white-space: nowrap;
-}
-
-/* 隐藏原始的输入控件 */
+/* 单选按钮样式 */
 .hidden-input {
     position: absolute;
     opacity: 0;
@@ -214,14 +116,17 @@ label {
     height: 0;
 }
 
-/* 自定义单选按钮样式 */
 .custom-radio-group {
-    display: inline;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .radio-label {
-    margin-right: 20px;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px;
 }
 
 .radio-label::before {
@@ -233,191 +138,197 @@ input[type="radio"]:checked + .radio-label::before {
     content: "■";
 }
 
-/* 自定义日期选择器样式 */
-.custom-date {
-    font-family: "SimSun", serif;      /* 使用宋体 */
-    font-size: 9.5pt;                  /* 设置字体大小 */
-    font-weight: normal;               /* 确保字体不加粗 */
-    border: none;
-    border-bottom: 1px solid #999;
-    width: 120px;
-    padding: 0;
-    margin: 0;
-    background: transparent;
-}
-
-/* 自定义下拉选择框样式 */
-.custom-select {
-    font-family: "SimSun", serif;      /* 使用宋体 */
-    font-size: 9.5pt;                  /* 设置字体大小 */
-    font-weight: normal;               /* 确保字体不加粗 */
-    border: none;
-    border-bottom: 1px solid #999;
-    width: auto;
-    padding: 0;
-    margin: 0;
-    background: transparent;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-/* 单选按钮标签样式 */
-.radio-label {
-    font-family: "SimSun", serif;      /* 使用宋体 */
-    font-weight: normal;               /* 确保字体不加粗 */
-    margin-right: 20px;
-    cursor: pointer;
-}
-
-/* 打印样式调整 */
-@media print {
-    /* 打印时隐藏横线 */
-    input[type="text"] {
-        border-bottom: none !important;
-        background-color: transparent !important;
-    }
-
-    .cell-content div {
-        border-bottom: none !important;
-    }
-
-    /* 隐藏下拉箭头和日期选择器的控件 */
-    .custom-select {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border: none;
-    }
-
-    .custom-date {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border: none;
-    }
-
-    /* 确保单选按钮在打印时显示正确 */
-    .radio-label::before {
-        content: "□";
-    }
-
-    input[type="radio"]:checked + .radio-label::before {
-        content: "■";
-    }
-
-    .agent-input.disabled {
-        background-color: transparent !important;
-        color: #000 !important;
-    }
-
-    input[type="text"].disabled {
-        background-color: transparent !important;
-        color: #000 !important;
-    }
-
-}
-
-/* 响应式布局 */
-@media screen and (max-width: 768px) {
-    .flex-row {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .flex-item {
-        width: 100%;
-    }
-
-    input[type="text"] {
-        width: calc(100% - 80px);
-    }
-}
-
-/* 委托诉讼代理人相关样式 */
-
-/* 代理人容器样式 */
-.agent-container {
-    position: relative;
-}
-
-/* 代理人选项样式 */
-.agent-option {
-    margin-bottom: 10px;
-}
-
-.no-agent {
+/* 复选框组样式 */
+.checkbox-group {
     margin-top: 10px;
 }
 
-/* 代理人详细信息容器 */
-.agent-details {
-    margin: 10px 0;
+.checkbox-row {
+    margin: 5px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-/* 代理人信息行样式 */
-.agent-info {
+.checkbox-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 切换选项样式 */
+.toggle-option-section {
+    margin-bottom: 15px;
+}
+
+.input-group {
+    margin: 10px 0 10px 20px;
+}
+
+/* 电子送达方式样式 */
+.delivery-method-row {
     margin: 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-/* "有"相关区域的样式 */
-.has-agent-section {
-    padding: 5px;
+.delivery-method-row label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* 禁用状态的包装容器 */
-#agentContentWrapper.disabled {
-    background-color: #808080;
-    pointer-events: none;
-}
-
-#agentContentWrapper.disabled input,
-#agentContentWrapper.disabled .radio-label {
+/* 禁用状态样式 */
+.disabled {
+    background-color: #f0f0f0 !important;
     color: #666;
     cursor: not-allowed;
 }
 
-#agentContentWrapper.disabled input[type="text"] {
-    background-color: #808080;
-    border-color: #666;
+input[type="text"].disabled {
+    background-color: #f0f0f0 !important;
+    border-color: #ccc;
 }
 
-/* 单选按钮样式 */
-.radio-label::before {
-    content: "□";
-    margin-right: 4px;
+/* 打印样式 */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    input[type="text"],
+    .custom-date,
+    .custom-select {
+        border-bottom: none !important;
+        background-color: transparent !important;
+    }
+
+    .disabled {
+        background-color: transparent !important;
+        color: #000 !important;
+    }
+
+    .radio-label::before {
+        color: #000;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+        -webkit-appearance: none;
+        appearance: none;
+        border: 1px solid #000;
+    }
 }
 
-input[type="radio"]:checked + .radio-label::before {
-    content: "■";
+/* 响应式布局 */
+@media screen and (max-width: 768px) {
+    .cell-title,
+    .cell-content {
+        display: block;
+        width: 100%;
+    }
+
+    .input-group {
+        margin-left: 10px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .char-10,
+    .char-15,
+    .char-20,
+    .char-30 {
+        width: 100%;
+    }
+
+    .delivery-method-row {
+        flex-direction: column;
+    }
+
+    .custom-radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .checkbox-row {
+        flex-direction: column;
+    }
 }
 
-/* 输入框禁用状态样式 */
-.agent-input.disabled {
-    background-color: #808080 !important;
-    color: #333;
+/* 表单验证样式 */
+input:invalid {
+    border-bottom-color: #ff4444;
 }
 
-/* 代理权限单选按钮禁用状态 */
-.agent-radio.disabled + .radio-label {
-    color: #333;
+.error-message {
+    color: #ff4444;
+    font-size: 0.9em;
+    margin-top: 4px;
 }
 
-/* 单选按钮样式 */
-.radio-label::before {
-    content: "□";
-    margin-right: 4px;
+/* 工具提示样式 */
+.tooltip {
+    position: relative;
+    display: inline-block;
 }
 
-input[type="radio"]:checked + .radio-label::before {
-    content: "■";
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
-/* 可切换的单选按钮样式 */
-.toggleable-radio:checked + .radio-label::before {
-    content: "■";
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
 }
 
-.toggleable-radio + .radio-label::before {
-    content: "□";
+/* 动画效果 */
+.form-row input,
+.form-row select {
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+    outline: none;
+    border-bottom-color: #1a73e8;
+    background-color: #f8f9fa;
+}
+
+/* 辅助功能样式 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+    input[type="text"],
+    .custom-date,
+    .custom-select {
+        border-bottom: 2px solid #000;
+    }
+
+    .disabled {
+        background-color: #000 !important;
+        color: #fff !important;
+    }
 }

@@ -15,8 +15,8 @@
     <table class="main-table">
         <!-- 说明部分 -->
         <colgroup>
-        <col style="width: 30%;">
-        <col style="width: 70%;">
+            <col style="width: 30%;">
+            <col style="width: 70%;">
         </colgroup>
         <tr>
             <td class="explanation-row" colspan="2">
@@ -28,7 +28,7 @@
                         <p>1. 为了方便您参加诉讼，保护您的合法权利，请填写本表。</p>
                         <p>1. 起诉时需向人民法院提交证明您身份的材料，如身份证复印件、营业执照复印件等。</p>
                         <p>2. 本表所列内容是您提起诉讼以及人民法院查明案件事实所需，请务必如实填写。</p>
-                        <p>3. 本表所涉内容系针对民间借贷纠纷案件，有些内容可能与您的案件无关，您认为与案件无关的项目可以填"无"或不填；对于本表中勾选项，如与您的案件相关，请在相应的"□"内打"✓"。</p>
+                        <p>3. 本表所涉内容系针对民间借贷纠纷案件，有些内容可能与您的案件无关，您认为与案件无关的项目可以填"无"或不填。</p>
                         <p class="warning">★特别提示★</p>
                         <p>《中华人民共和国民事诉讼法》第十三条第一款规定："民事诉讼应当遵循诚信原则。"</p>
                         <p>如果诉讼参加人违反上述规定，进行虚假诉讼、恶意诉讼，人民法院将视违法情形依法追究责任。</p>
@@ -43,76 +43,82 @@
         </tr>
 
         <!-- 原告自然人 -->
-       <tr>
-        <td class="cell-title">原告（自然人）</td>
-        <td class="cell-content no-bottom-lines">
-            <div>姓名：<input type="text" class="char-10"></div>
-            <div class="form-item">
-                性别：
-                <span class="custom-radio-group">
-                    <input type="radio" id="male" name="gender" value="男" class="hidden-input">
-                    <label for="male" class="radio-label">男</label>
-                    <input type="radio" id="female" name="gender" value="女" class="hidden-input">
-                    <label for="female" class="radio-label">女</label>
-                </span>
-            </div>
-            <div class="form-item">
-                出生日期：<input type="date" class="custom-date">
-            </div>
-            <div>民族：<input type="text" class="char-10"></div>
-            <div>工作单位：<input type="text" class="char-30"></div>
-            <div>职务：<input type="text" class="char-10">联系电话：<input type="text"></div>
-            <div>住所地（户籍所在地）：<input type="text" class="char-30"></div>
-            <div>经常居住地：<input type="text" class="char-30"></div>
-            <div class="form-item">
-                证件类型：
-                <select class="custom-select">
-                    <option value="居民身份证">居民身份证</option>
-                    <option value="临时身份证">临时身份证</option>
-                    <option value="军官证">军官证</option>
-                    <option value="武警警官证">武警警官证</option>
-                    <option value="护照">护照</option>
-                </select>
-            </div>
-            <div>证件号码：<input type="text" class="char-20"></div>
-        </td>
-       </tr>
+        <tr>
+            <td class="cell-title">原告（自然人）</td>
+            <td class="cell-content">
+                <div class="form-row">姓名：<input type="text" class="char-10"></div>
+                <div class="form-row">
+                    性别：
+                    <span class="custom-radio-group">
+                        <input type="radio" id="male" name="gender" value="男" class="hidden-input">
+                        <label for="male" class="radio-label">男</label>
+                        <input type="radio" id="female" name="gender" value="女" class="hidden-input">
+                        <label for="female" class="radio-label">女</label>
+                    </span>
+                </div>
+                <div class="form-row">
+                    出生日期：<input type="date" class="custom-date">
+                </div>
+                <div class="form-row">民族：<input type="text" class="char-10"></div>
+                <div class="form-row">工作单位：<input type="text" class="char-30"></div>
+                <div class="form-row">
+                    职务：<input type="text" class="char-10">
+                    联系电话：<input type="text" class="char-15">
+                </div>
+                <div class="form-row">住所地（户籍所在地）：<input type="text" class="char-30"></div>
+                <div class="form-row">经常居住地：<input type="text" class="char-30"></div>
+                <div class="form-row">
+                    证件类型：
+                    <select class="custom-select">
+                        <option value="居民身份证">居民身份证</option>
+                        <option value="临时身份证">临时身份证</option>
+                        <option value="军官证">军官证</option>
+                        <option value="武警警官证">武警警官证</option>
+                        <option value="护照">护照</option>
+                    </select>
+                </div>
+                <div class="form-row">证件号码：<input type="text" class="char-20"></div>
+            </td>
+        </tr>
 
         <!-- 原告法人 -->
         <tr>
             <td class="cell-title">原告（法人、非法人组织）</td>
             <td class="cell-content">
-                <div>名称：<input type="text"></div>
-                <div>住所地（主要办事机构所在地）：<input type="text"></div>
-                <div>注册地/登记地：<input type="text"></div>
-                <div>法定代表人/主要负责人：<input type="text"></div>
-                <div>职务：<input type="text">联系电话：<input type="text"></div>
-                <div>统一社会信用代码：<input type="text"></div>
+                <div class="form-row">名称：<input type="text" class="char-30"></div>
+                <div class="form-row">住所地（主要办事机构所在地）：<input type="text" class="char-30"></div>
+                <div class="form-row">注册地/登记地：<input type="text" class="char-30"></div>
+                <div class="form-row">法定代表人/主要负责人：<input type="text" class="char-20"></div>
+                <div class="form-row">
+                    职务：<input type="text" class="char-10">
+                    联系电话：<input type="text" class="char-15">
+                </div>
+                <div class="form-row">统一社会信用代码：<input type="text" class="char-20"></div>
                 <div class="checkbox-group">
                     类型：
-                    <div>
+                    <div class="checkbox-row">
                         <label><input type="checkbox">有限责任公司</label>
                         <label><input type="checkbox">股份有限公司</label>
                         <label><input type="checkbox">上市公司</label>
                         <label><input type="checkbox">其他企业法人</label>
                     </div>
-                    <div>
+                    <div class="checkbox-row">
                         <label><input type="checkbox">事业单位</label>
                         <label><input type="checkbox">社会团体</label>
                         <label><input type="checkbox">基金会</label>
                         <label><input type="checkbox">社会服务机构</label>
                     </div>
-                    <div>
+                    <div class="checkbox-row">
                         <label><input type="checkbox">机关法人</label>
                         <label><input type="checkbox">农村集体经济组织法人</label>
                         <label><input type="checkbox">城镇农村的合作经济组织法人</label>
                     </div>
-                    <div>
+                    <div class="checkbox-row">
                         <label><input type="checkbox">基层群众性自治组织法人</label>
                         <label><input type="checkbox">个人独资企业</label>
                         <label><input type="checkbox">合伙企业</label>
                     </div>
-                    <div>
+                    <div class="checkbox-row">
                         <label><input type="checkbox">不具有法人资格的专业服务机构</label>
                         <label><input type="checkbox">国有</label>
                         <label><input type="checkbox">控股</label>
@@ -123,56 +129,88 @@
             </td>
         </tr>
 
-        <!-- 委托诉讼代理人部分 -->
+        <!-- 委托诉讼代理人 -->
         <tr>
-                <td class="cell-title">委托诉讼代理人</td>
-                <td class="cell-content">
-                    <!-- 代理人选项"有" -->
-                    <div class="has-agent-section">
-                        <span class="custom-radio-group">
-                            <input type="radio" id="hasAgent" name="hasAgent" value="有" class="hidden-input toggleable-radio">
-                            <label for="hasAgent" class="radio-label">有</label>
-                        </span>
-                    </div>
+            <td class="cell-title">委托诉讼代理人</td>
+            <td class="cell-content">
+                <div class="toggle-option-section">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="hasAgent" name="hasAgent" value="有" class="hidden-input toggleable-radio">
+                        <label for="hasAgent" class="radio-label">有</label>
+                    </span>
 
-                    <!-- 代理人详细信息 -->
-                    <div class="agent-details">
-                        <div>姓名：<input type="text" class="char-10 agent-input"></div>
-                        <div>
+                    <div class="input-group">
+                        <div class="form-row">姓名：<input type="text" class="char-10 agent-input"></div>
+                        <div class="form-row">
                             单位：<input type="text" class="char-20 agent-input">
                             职务：<input type="text" class="char-10 agent-input">
                             联系电话：<input type="text" class="char-15 agent-input">
                         </div>
-                        <div class="agent-authority">
-                            代理权限：
-                            <span class="custom-radio-group">
-                                <input type="radio" id="generalAuth" name="authority" value="general" class="hidden-input toggleable-radio agent-radio">
-                                <label for="generalAuth" class="radio-label">一般授权</label>
-                                <input type="radio" id="specialAuth" name="authority" value="special" class="hidden-input toggleable-radio agent-radio">
-                                <label for="specialAuth" class="radio-label">特别授权</label>
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- 代理人选项"无" -->
-                    <div class="agent-option no-agent">
+                    <div class="form-row">
+                        代理权限：
                         <span class="custom-radio-group">
-                            <input type="radio" id="noAgent" name="hasAgent" value="无" class="hidden-input toggleable-radio">
-                            <label for="noAgent" class="radio-label">无</label>
+                            <input type="radio" id="generalAuth" name="authority" value="一般授权" class="hidden-input agent-input">
+                            <label for="generalAuth" class="radio-label">一般授权</label>
+                            <input type="radio" id="specialAuth" name="authority" value="特别授权" class="hidden-input agent-input">
+                            <label for="specialAuth" class="radio-label">特别授权</label>
                         </span>
                     </div>
-                </td>
-            </tr>
+                    </div>
+                </div>
+
+                <div class="toggle-option">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="noAgent" name="hasAgent" value="无" class="hidden-input toggleable-radio">
+                        <label for="noAgent" class="radio-label">无</label>
+                    </span>
+                </div>
+            </td>
+        </tr>
 
         <!-- 送达地址 -->
         <tr>
-            <td class="cell-title">
-                送达地址(所填信息除书面特别声明更改外，适用于案件一审、二审、再审所有后续程序)及收件人、电话
-            </td>
+            <td class="cell-title">送达地址(所填信息除书面特别声明更改外，适用于案件一审、二审、再审所有后续程序)及收件人、电话</td>
             <td class="cell-content">
-                <div>地址：<input type="text" class="char-30"></div>
-                <div>收件人：<input type="text" class="char-10"></div>
-                <div>电话：<input type="text" class="char-15"></div>
+                <div class="form-row">地址：<input type="text" class="char-30"></div>
+                <div class="form-row">收件人：<input type="text" class="char-10"></div>
+                <div class="form-row">电话：<input type="text" class="char-15"></div>
+            </td>
+        </tr>
+
+        <!-- 电子送达 -->
+        <tr>
+            <td class="cell-title">是否接受电子送达</td>
+            <td class="cell-content">
+                <div class="toggle-option-section">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="acceptElectronic" name="acceptElectronic" value="是" class="hidden-input toggleable-radio">
+                        <label for="acceptElectronic" class="radio-label">是</label>
+                    </span>
+
+                    <div class="input-group">
+                        <div class="form-row">
+                            方式：
+                            <div class="delivery-method-row">
+                                <label>短信<input type="text" class="char-15 delivery-input"></label>
+                                <label>微信<input type="text" class="char-15 delivery-input"></label>
+                                <label>传真<input type="text" class="char-15 delivery-input"></label>
+                            </div>
+                            <div class="delivery-method-row">
+                                <label>邮箱<input type="text" class="char-30 delivery-input"></label>
+                            </div>
+                            <div class="delivery-method-row">
+                                <label>其他<input type="text" class="char-20 delivery-input"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toggle-option">
+                    <span class="custom-radio-group">
+                        <input type="radio" id="rejectElectronic" name="acceptElectronic" value="否" class="hidden-input toggleable-radio">
+                        <label for="rejectElectronic" class="radio-label">否</label>
+                    </span>
+                </div>
             </td>
         </tr>
     </table>
