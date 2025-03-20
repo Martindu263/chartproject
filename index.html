@@ -416,21 +416,37 @@
 
         <!-- 3. 提前还款或解除合同 -->
         <tr>
-            <td class="cell-title">3. 是否要求提前还款或解除合同</td>
+            <td class="cell-title">3.是否要求提前还款或解除合同</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="earlyPaymentYes" name="earlyPayment" value="是" class="hidden-input">
-                        <label for="earlyPaymentYes" class="radio-label">是</label>
-                        <label><input type="checkbox">提前还款(加速到期)</label>
-                        <label><input type="checkbox">解除合同</label>
-                    </span>
-                </div>
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="earlyPaymentNo" name="earlyPayment" value="否" class="hidden-input">
-                        <label for="earlyPaymentNo" class="radio-label">否</label>
-                    </span>
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="hasEarlyRepayment" name="hasEarlyRepayment" value="是" class="hidden-input toggleable-radio">
+                            <label for="hasEarlyRepayment" class="radio-label">是</label>
+                        </span>
+
+                        <div class="input-group">
+                            <div class="form-row">
+                                <div class="repayment-type-row">
+                                    <label>
+                                        <input type="radio" id="earlyRepayment" name="repaymentType" class="hidden-input early-repayment-input" required>
+                                        <label for="earlyRepayment" class="radio-label">提前还款(加速到期)</label>
+                                    </label>
+                                    <label>
+                                        <input type="radio" id="contractTermination" name="repaymentType" class="hidden-input early-repayment-input" required>
+                                        <label for="contractTermination" class="radio-label">解除合同</label>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="noEarlyRepayment" name="hasEarlyRepayment" value="否" class="hidden-input toggleable-radio">
+                            <label for="noEarlyRepayment" class="radio-label">否</label>
+                        </span>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -439,18 +455,26 @@
         <tr>
             <td class="cell-title">4. 是否主张担保权利</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="guaranteeYes" name="guarantee" value="是" class="hidden-input">
-                        <label for="guaranteeYes" class="radio-label">是</label>
-                    </span>
-                    内容：<input type="text" class="char-30">
-                </div>
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="guaranteeNo" name="guarantee" value="否" class="hidden-input">
-                        <label for="guaranteeNo" class="radio-label">否</label>
-                    </span>
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="guaranteeYes" name="guarantee" value="是" class="hidden-input toggleable-radio">
+                            <label for="guaranteeYes" class="radio-label">是</label>
+                        </span>
+
+                        <div class="input-group">
+                            <div class="form-row">
+                                <label>内容：<input type="text" class="char-30 guarantee-input" required></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="guaranteeNo" name="guarantee" value="否" class="hidden-input toggleable-radio">
+                            <label for="guaranteeNo" class="radio-label">否</label>
+                        </span>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -459,18 +483,26 @@
         <tr>
             <td class="cell-title">5. 是否主张实现债权的费用</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="debtCostYes" name="debtCost" value="是" class="hidden-input">
-                        <label for="debtCostYes" class="radio-label">是</label>
-                    </span>
-                    明细：<input type="text" class="char-30">
-                </div>
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="debtCostNo" name="debtCost" value="否" class="hidden-input">
-                        <label for="debtCostNo" class="radio-label">否</label>
-                    </span>
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="debtCostYes" name="debtCost" value="是" class="hidden-input toggleable-radio">
+                            <label for="debtCostYes" class="radio-label">是</label>
+                        </span>
+
+                        <div class="input-group">
+                            <div class="form-row">
+                                <label>明细：<input type="text" class="char-30 debt-cost-input" required></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="debtCostNo" name="debtCost" value="否" class="hidden-input toggleable-radio">
+                            <label for="debtCostNo" class="radio-label">否</label>
+                        </span>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -517,18 +549,26 @@
         <tr>
             <td class="cell-title">1. 有无仲裁、法院管辖约定</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="jurisdictionYes" name="jurisdiction" value="有" class="hidden-input">
-                        <label for="jurisdictionYes" class="radio-label">有</label>
-                    </span>
-                    合同条款及内容：<input type="text" class="char-30">
-                </div>
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="jurisdictionNo" name="jurisdiction" value="无" class="hidden-input">
-                        <label for="jurisdictionNo" class="radio-label">无</label>
-                    </span>
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="jurisdictionYes" name="jurisdiction" value="有" class="hidden-input toggleable-radio">
+                            <label for="jurisdictionYes" class="radio-label">有</label>
+                        </span>
+
+                        <div class="input-group">
+                            <div class="form-row">
+                                <label>合同条款及内容：<input type="text" class="char-30 jurisdiction-input" required></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="jurisdictionNo" name="jurisdiction" value="无" class="hidden-input toggleable-radio">
+                            <label for="jurisdictionNo" class="radio-label">无</label>
+                        </span>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -682,18 +722,27 @@
         <tr>
             <td class="cell-title">9. 是否存在逾期还款</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="isOverdueYes" name="isOverdue" value="是" class="hidden-input">
-                        <label for="isOverdueYes" class="radio-label">是</label>
-                    </span>
-                    逾期时间：<input type="text" class="char-20"> 至今已逾期
-                </div>
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="isOverdueNo" name="isOverdue" value="否" class="hidden-input">
-                        <label for="isOverdueNo" class="radio-label">否</label>
-                    </span>
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="isOverdueYes" name="isOverdue" value="是" class="hidden-input toggleable-radio">
+                            <label for="isOverdueYes" class="radio-label">是</label>
+                        </span>
+
+                        <div class="input-group">
+                            <div class="form-row">
+                                <label>逾期时间：<input type="text" class="char-20 overdue-input" required></label>
+                                <span class="static-text">至今已逾期</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="isOverdueNo" name="isOverdue" value="否" class="hidden-input toggleable-radio">
+                            <label for="isOverdueNo" class="radio-label">否</label>
+                        </span>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -702,15 +751,27 @@
         <tr>
             <td class="cell-title">10. 是否签订物的担保(抵押、质押)合同</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="hasGuaranteeContractYes" name="hasGuaranteeContract" value="是" class="hidden-input">
-                        <label for="hasGuaranteeContractYes" class="radio-label">是</label>
-                        <input type="radio" id="hasGuaranteeContractNo" name="hasGuaranteeContract" value="否" class="hidden-input">
-                        <label for="hasGuaranteeContractNo" class="radio-label">否</label>
-                    </span>
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="hasGuaranteeContractYes" name="hasGuaranteeContract" value="是" class="hidden-input toggleable-radio">
+                            <label for="hasGuaranteeContractYes" class="radio-label">是</label>
+                        </span>
+
+                        <div class="input-group">
+                            <div class="form-row">
+                                <label>签订时间：<input type="date" class="custom-date guarantee-contract-input" required></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="hasGuaranteeContractNo" name="hasGuaranteeContract" value="否" class="hidden-input toggleable-radio">
+                            <label for="hasGuaranteeContractNo" class="radio-label">否</label>
+                        </span>
+                    </div>
                 </div>
-                <div class="form-row">签订时间：<input type="date" class="custom-date"></div>
             </td>
         </tr>
 
@@ -727,36 +788,66 @@
         <tr>
             <td class="cell-title">12. 是否最高额担保(抵押、质押)</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="isMaxGuaranteeYes" name="isMaxGuarantee" value="是" class="hidden-input">
-                        <label for="isMaxGuaranteeYes" class="radio-label">是</label>
-                        <input type="radio" id="isMaxGuaranteeNo" name="isMaxGuarantee" value="否" class="hidden-input">
-                        <label for="isMaxGuaranteeNo" class="radio-label">否</label>
-                    </span>
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="isMaxGuaranteeYes" name="isMaxGuarantee" value="是" class="hidden-input toggleable-radio">
+                            <label for="isMaxGuaranteeYes" class="radio-label">是</label>
+                        </span>
+
+                        <div class="input-group">
+                            <div class="form-row">
+                                <label>担保债权的确定时间：<input type="date" class="custom-date max-guarantee-input" required></label>
+                            </div>
+                            <div class="form-row">
+                                <label>担保额度：<input type="text" class="char-20 max-guarantee-input" required></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="isMaxGuaranteeNo" name="isMaxGuarantee" value="否" class="hidden-input toggleable-radio">
+                            <label for="isMaxGuaranteeNo" class="radio-label">否</label>
+                        </span>
+                    </div>
                 </div>
-                <div class="form-row">担保债权的确定时间：<input type="date" class="custom-date"></div>
-                <div class="form-row">担保额度：<input type="text" class="char-20"></div>
             </td>
         </tr>
 
-        <!-- 13. 是否办理抵押、质押登记 -->
+       <!-- 13. 是否办理抵押、质押登记 -->
         <tr>
             <td class="cell-title">13. 是否办理抵押、质押登记</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="hasRegistrationYes" name="hasRegistration" value="是" class="hidden-input">
-                        <label for="hasRegistrationYes" class="radio-label">是</label>
-                    </span>
-                    <label><input type="checkbox">正式登记</label>
-                    <label><input type="checkbox">预告登记</label>
-                </div>
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="hasRegistrationNo" name="hasRegistration" value="否" class="hidden-input">
-                        <label for="hasRegistrationNo" class="radio-label">否</label>
-                    </span>
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="hasRegistrationYes" name="hasRegistration" value="是" class="hidden-input toggleable-radio">
+                            <label for="hasRegistrationYes" class="radio-label">是</label>
+                        </span>
+
+                        <div class="input-group">
+                            <div class="form-row">
+                                <div class="checkbox-group">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" id="formalRegistration" class="registration-input" disabled>
+                                        <span class="checkbox-text">正式登记</span>
+                                    </label>
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" id="preRegistration" class="registration-input" disabled>
+                                        <span class="checkbox-text">预告登记</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="hasRegistrationNo" name="hasRegistration" value="否" class="hidden-input toggleable-radio">
+                            <label for="hasRegistrationNo" class="radio-label">否</label>
+                        </span>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -765,20 +856,30 @@
         <tr>
             <td class="cell-title">14. 是否签订保证合同</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="hasWarrantyContractYes" name="hasWarrantyContract" value="是" class="hidden-input">
-                        <label for="hasWarrantyContractYes" class="radio-label">是</label>
-                    </span>
-                    签订时间：<input type="date" class="custom-date">
-                    保证人：<input type="text" class="char-20">
-                </div>
-                <div class="form-row">主要内容：<input type="text" class="char-30"></div>
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="hasWarrantyContractNo" name="hasWarrantyContract" value="否" class="hidden-input">
-                        <label for="hasWarrantyContractNo" class="radio-label">否</label>
-                    </span>
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="hasWarrantyContractYes" name="hasWarrantyContract" value="是" class="hidden-input toggleable-radio">
+                            <label for="hasWarrantyContractYes" class="radio-label">是</label>
+                        </span>
+
+                        <div class="input-group">
+                            <div class="form-row">
+                                <label>签订时间：<input type="date" class="custom-date warranty-contract-input" required></label>
+                                <label>保证人：<input type="text" class="char-20 warranty-contract-input" required></label>
+                            </div>
+                            <div class="form-row">
+                                <label>主要内容：<input type="text" class="char-30 warranty-contract-input" required></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="hasWarrantyContractNo" name="hasWarrantyContract" value="否" class="hidden-input toggleable-radio">
+                            <label for="hasWarrantyContractNo" class="radio-label">否</label>
+                        </span>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -798,19 +899,27 @@
         <tr>
             <td class="cell-title">16. 其他担保方式</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="hasOtherGuaranteeYes" name="hasOtherGuarantee" value="是" class="hidden-input">
-                        <label for="hasOtherGuaranteeYes" class="radio-label">是</label>
-                    </span>
-                    形式：<input type="text" class="char-20">
-                    签订时间：<input type="date" class="custom-date">
-                </div>
-                <div class="form-row">
-                    <span class="custom-radio-group">
-                        <input type="radio" id="hasOtherGuaranteeNo" name="hasOtherGuarantee" value="否" class="hidden-input">
-                        <label for="hasOtherGuaranteeNo" class="radio-label">否</label>
-                    </span>
+                <div class="toggle-option-group">
+                    <div class="toggle-option-section">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="hasOtherGuaranteeYes" name="hasOtherGuarantee" value="是" class="hidden-input toggleable-radio">
+                            <label for="hasOtherGuaranteeYes" class="radio-label">是</label>
+                        </span>
+
+                        <div class="input-group">
+                            <div class="form-row">
+                                <label>形式：<input type="text" class="char-20 other-guarantee-input" required></label>
+                                <label>签订时间：<input type="date" class="custom-date other-guarantee-input" required></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-option">
+                        <span class="custom-radio-group">
+                            <input type="radio" id="hasOtherGuaranteeNo" name="hasOtherGuarantee" value="否" class="hidden-input toggleable-radio">
+                            <label for="hasOtherGuaranteeNo" class="radio-label">否</label>
+                        </span>
+                    </div>
                 </div>
             </td>
         </tr>

@@ -206,7 +206,18 @@ class FormHandler {
 
         // 检查是否有"否"或"无"被选中
         const negativeChecked = Array.from(radios).some(radio =>
-            (radio.id === 'noAgent' || radio.id === 'rejectElectronic') && radio.checked
+            (radio.id === 'noAgent' ||
+             radio.id === 'rejectElectronic' ||
+             radio.id === 'noEarlyRepayment' ||
+             radio.id === 'guaranteeNo' ||
+             radio.id === 'debtCostNo' ||
+             radio.id === 'jurisdictionNo' ||
+             radio.id === 'isOverdueNo' ||
+             radio.id === 'hasGuaranteeContractNo' ||
+             radio.id === 'isMaxGuaranteeNo' ||
+             radio.id === 'hasRegistrationNo' ||
+             radio.id === 'hasWarrantyContractNo'||
+             radio.id === 'hasOtherGuaranteeNo') && radio.checked
         );
 
         // 如果选择了"否"或"无"，则认为该单元格已完成
@@ -276,7 +287,57 @@ formHandler
         positiveRadioId: 'acceptElectronic',
         negativeRadioId: 'rejectElectronic',
         inputSelector: '.electronic-delivery-input'
-    });
+    })
+    .addToggleConfig('earlyRepaymentGroup', {
+        positiveRadioId: 'hasEarlyRepayment',
+        negativeRadioId: 'noEarlyRepayment',
+        inputSelector: '.early-repayment-input'
+    })
+    .addToggleConfig('guaranteeGroup', {
+        positiveRadioId: 'guaranteeYes',
+        negativeRadioId: 'guaranteeNo',
+        inputSelector: '.guarantee-input'
+    })
+    .addToggleConfig('debtCostGroup', {
+        positiveRadioId: 'debtCostYes',
+        negativeRadioId: 'debtCostNo',
+        inputSelector: '.debt-cost-input'
+    })
+    .addToggleConfig('jurisdictionGroup', {
+        positiveRadioId: 'jurisdictionYes',
+        negativeRadioId: 'jurisdictionNo',
+        inputSelector: '.jurisdiction-input'
+})
+    .addToggleConfig('overdueGroup', {
+        positiveRadioId: 'isOverdueYes',
+        negativeRadioId: 'isOverdueNo',
+        inputSelector: '.overdue-input'
+})
+    .addToggleConfig('guaranteeContractGroup', {
+        positiveRadioId: 'hasGuaranteeContractYes',
+        negativeRadioId: 'hasGuaranteeContractNo',
+        inputSelector: '.guarantee-contract-input'
+})
+    .addToggleConfig('maxGuaranteeGroup', {
+        positiveRadioId: 'isMaxGuaranteeYes',
+        negativeRadioId: 'isMaxGuaranteeNo',
+        inputSelector: '.max-guarantee-input'
+})
+    .addToggleConfig('registrationGroup', {
+        positiveRadioId: 'hasRegistrationYes',
+        negativeRadioId: 'hasRegistrationNo',
+        inputSelector: '.registration-input'
+})
+    .addToggleConfig('warrantyContractGroup', {
+        positiveRadioId: 'hasWarrantyContractYes',
+        negativeRadioId: 'hasWarrantyContractNo',
+        inputSelector: '.warranty-contract-input'
+})
+    .addToggleConfig('otherGuaranteeGroup', {
+        positiveRadioId: 'hasOtherGuaranteeYes',
+        negativeRadioId: 'hasOtherGuaranteeNo',
+        inputSelector: '.other-guarantee-input'
+});
 
 // 提供全局接口
 window.FormHandler = FormHandler;
