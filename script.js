@@ -7,6 +7,7 @@ class FormHandler {
      */
     constructor() {
         this.toggleConfigs = new Map();
+        this.lockedSections = new Set();
         this.init();
     }
 
@@ -20,8 +21,149 @@ class FormHandler {
             this.setupCellValidation();
             this.initializeDateFields();
             this.setupCurrentDateTime();
+            this.initializeDateGroups();
+            this.initializeLockableContent();
+            // 保存初始状态
+            this.saveFormState();
         });
     }
+
+    /**
+     * 初始化日期组
+     */
+    initializeDateGroups() {
+        const dateGroups = document.querySelectorAll('.date-group');
+
+        dateGroups.forEach(group => {
+            const yearSelect = group.querySelector('[data-type="year"]');
+            const monthSelect = group.querySelector('[data-type="month"]');
+            const daySelect = group.querySelector('[data-type="day"]');
+
+            if (yearSelect && monthSelect && daySelect) {
+                // 初始化年份选择器
+                this.initializeYearSelect(yearSelect);
+                // 初始化月份选择器
+                this.initializeMonthSelect(monthSelect);
+                // 初始化日期选择器
+                this.initializeDaySelect(daySelect, yearSelect, monthSelect);
+
+                // 添加联动事件
+                yearSelect.addEventListener('change', () => {
+                    this.updateDayOptions(daySelect, yearSelect, monthSelect);
+                });
+                monthSelect.addEventListener('change', () => {
+                    this.updateDayOptions(daySelect, yearSelect, monthSelect);
+                });
+            }
+        });
+    }
+
+    /**
+     * 初始化年份选择器
+     * @param {HTMLSelectElement} yearSelect - 年份选择元素
+     */
+    initializeYearSelect(yearSelect) {
+        const currentYear = new Date().getFullYear();
+        const startYear = currentYear - 120; // 假设最大年龄为120岁
+
+        yearSelect.innerHTML = ''; // 清空现有选项
+
+        // 添加默认选项
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = '请选择';
+        yearSelect.appendChild(defaultOption);
+
+        // 添加年份选项
+        for (let year = currentYear; year >= startYear; year--) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        }
+    }
+
+     /**
+     * 初始化月份选择器
+     * @param {HTMLSelectElement} monthSelect - 月份选择元素
+     */
+    initializeMonthSelect(monthSelect) {
+        monthSelect.innerHTML = ''; // 清空现有选项
+
+        // 添加默认选项
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = '请选择';
+        monthSelect.appendChild(defaultOption);
+
+        // 添加月份选项（1-12月）
+        for (let month = 1; month <= 12; month++) {
+            const option = document.createElement('option');
+            option.value = month;
+            option.textContent = month;
+            monthSelect.appendChild(option);
+        }
+    }
+
+    /**
+     * 初始化日期选择器
+     * @param {HTMLSelectElement} daySelect - 日期选择元素
+     * @param {HTMLSelectElement} yearSelect - 年份选择元素
+     * @param {HTMLSelectElement} monthSelect - 月份选择元素
+     */
+    initializeDaySelect(daySelect, yearSelect, monthSelect) {
+        daySelect.innerHTML = ''; // 清空现有选项
+
+        // 添加默认选项
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = '请选择';
+        daySelect.appendChild(defaultOption);
+
+        // 添加日期选项（1-31日）
+        this.updateDayOptions(daySelect, yearSelect, monthSelect);
+    }
+
+    /**
+     * 更新日期选项
+     * @param {HTMLSelectElement} daySelect - 日期选择元素
+     * @param {HTMLSelectElement} yearSelect - 年份选择元素
+     * @param {HTMLSelectElement} monthSelect - 月份选择元素
+     */
+    updateDayOptions(daySelect, yearSelect, monthSelect) {
+        const year = parseInt(yearSelect.value) || new Date().getFullYear();
+        const month = parseInt(monthSelect.value) || 1;
+
+        // 获取当月的天数
+        const daysInMonth = new Date(year, month, 0).getDate();
+
+        // 保存当前选中的值
+        const currentValue = daySelect.value;
+
+        daySelect.innerHTML = ''; // 清空现有选项
+
+        // 添加默认选项
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = '请选择';
+        daySelect.appendChild(defaultOption);
+
+        // 添加日期选项
+        for (let day = 1; day <= daysInMonth; day++) {
+            const option = document.createElement('option');
+            option.value = day;
+            option.textContent = day;
+            daySelect.appendChild(option);
+        }
+
+        // 如果之前选中的值仍然有效，则保持选中
+        if (currentValue && currentValue <= daysInMonth) {
+            daySelect.value = currentValue;
+        }
+    }
+
+
+
 
     /**
      * 设置当前日期时间
@@ -271,6 +413,174 @@ class FormHandler {
             }
         });
     }
+
+    /**
+     * 初始化可锁定内容
+     */
+    initializeLockableContent() {
+        const lockableContainers = document.querySelectorAll('.lockable-content');
+
+        lockableContainers.forEach(container => {
+            const textarea = container.querySelector('textarea');
+            const lockButton = container.querySelector('.lock-button');
+            const sectionId = container.dataset.section;
+
+            if (textarea && lockButton && sectionId) {
+                // 初始化状态
+                container.classList.add('unlocked');
+
+                // 设置自动保存
+                textarea.addEventListener('input', () => {
+                    this.autoSave(sectionId, textarea.value);
+                });
+
+                // 设置锁定按钮事件
+                lockButton.addEventListener('click', () => {
+                    this.toggleLockState(container);
+                });
+
+                // 恢复保存的状态
+                this.restoreContent(sectionId, textarea);
+            }
+        });
+    }
+
+    /**
+     * 切换锁定状态
+     * @param {HTMLElement} container - 容器元素
+     */
+    toggleLockState(container) {
+        const textarea = container.querySelector('textarea');
+        const lockButton = container.querySelector('.lock-button');
+        const sectionId = container.dataset.section;
+        const isLocked = container.classList.contains('locked');
+
+        if (isLocked) {
+            this.unlockSection(container, textarea, lockButton);
+            this.lockedSections.delete(sectionId);
+        } else {
+            if (this.validateContent(textarea)) {
+                this.lockSection(container, textarea, lockButton);
+                this.lockedSections.add(sectionId);
+            }
+        }
+
+        // 保存状态
+        this.saveFormState();
+    }
+
+    /**
+     * 锁定区域
+     * @param {HTMLElement} container - 容器元素
+     * @param {HTMLTextAreaElement} textarea - 文本区域
+     * @param {HTMLButtonElement} lockButton - 锁定按钮
+     */
+    lockSection(container, textarea, lockButton) {
+        container.classList.remove('unlocked');
+        container.classList.add('locked');
+        textarea.readOnly = true;
+        lockButton.querySelector('.lock-icon').textContent = '🔒';
+
+        // 更新完成状态
+        this.updateCompletionStatus(container, true);
+    }
+
+    /**
+     * 解锁区域
+     * @param {HTMLElement} container - 容器元素
+     * @param {HTMLTextAreaElement} textarea - 文本区域
+     * @param {HTMLButtonElement} lockButton - 锁定按钮
+     */
+    unlockSection(container, textarea, lockButton) {
+        container.classList.remove('locked');
+        container.classList.add('unlocked');
+        textarea.readOnly = false;
+        lockButton.querySelector('.lock-icon').textContent = '🔓';
+
+        // 更新完成状态
+        this.updateCompletionStatus(container, false);
+    }
+
+    /**
+     * 验证内容
+     * @param {HTMLTextAreaElement} textarea - 文本区域
+     * @returns {boolean} - 验证结果
+     */
+    validateContent(textarea) {
+        if (!textarea.value.trim()) {
+            alert('请先填写内容后再锁定');
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 更新完成状态
+     * @param {HTMLElement} container - 容器元素
+     * @param {boolean} isComplete - 是否完成
+     */
+    updateCompletionStatus(container, isComplete) {
+        const cellContent = container.closest('.cell-content');
+        const indicator = cellContent.querySelector('.completion-indicator');
+        if (indicator) {
+            if (isComplete) {
+                indicator.classList.add('complete');
+                indicator.textContent = '✓';
+            } else {
+                indicator.classList.remove('complete');
+                indicator.textContent = '';
+            }
+        }
+    }
+
+    /**
+     * 自动保存内容
+     * @param {string} sectionId - 区域ID
+     * @param {string} content - 内容
+     */
+    autoSave(sectionId, content) {
+        localStorage.setItem(`section_${sectionId}`, content);
+        localStorage.setItem(`section_${sectionId}_timestamp`, new Date().toISOString());
+    }
+
+    /**
+     * 恢复内容
+     * @param {string} sectionId - 区域ID
+     * @param {HTMLTextAreaElement} textarea - 文本区域
+     */
+    restoreContent(sectionId, textarea) {
+        const savedContent = localStorage.getItem(`section_${sectionId}`);
+        if (savedContent) {
+            textarea.value = savedContent;
+            // 检查是否之前已锁定
+            if (this.lockedSections.has(sectionId)) {
+                const container = textarea.closest('.lockable-content');
+                this.lockSection(
+                    container,
+                    textarea,
+                    container.querySelector('.lock-button')
+                );
+            }
+        }
+    }
+
+    /**
+     * 保存表单状态
+     */
+    saveFormState() {
+        localStorage.setItem('lockedSections', JSON.stringify([...this.lockedSections]));
+    }
+
+    /**
+     * 恢复表单状态
+     */
+    restoreFormState() {
+        const savedSections = localStorage.getItem('lockedSections');
+        if (savedSections) {
+            this.lockedSections = new Set(JSON.parse(savedSections));
+        }
+    }
+
 }
 
 // 创建表单处理器实例

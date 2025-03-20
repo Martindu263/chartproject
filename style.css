@@ -51,12 +51,48 @@ body {
     vertical-align: middle;
 }
 
+/* 标题文本容器样式 */
+.cell-title-text {
+    word-wrap: break-word; /* 允许长单词换行 */
+    word-break: break-all; /* 在任意字符间换行 */
+    white-space: pre-line; /* 保留换行符并允许自动换行 */
+    line-height: 1.5; /* 设置行高 */
+}
+
+
+/* 内容单元格样式调整 */
 .cell-content {
     width: 70%;
     padding: 10px;
     border: 1px solid #000;
     vertical-align: top;
     position: relative;
+}
+
+/* 文本区域样式 */
+textarea.char-180 {
+    width: 100%;
+    min-height: 60px; /* 设置最小高度 */
+    resize: vertical; /* 只允许垂直方向调整大小 */
+    font-family: "SimSun", serif;
+    font-size: 9.5pt;
+    padding: 8px;
+    border: 1px solid #999;
+    border-radius: 3px;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+/* 文本区域焦点状态 */
+textarea.char-180:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+/* 自动调整高度的文本区域 */
+.auto-resize {
+    overflow-y: hidden; /* 隐藏垂直滚动条 */
 }
 
 /* 未完成单元格的样式 */
@@ -117,6 +153,14 @@ input[type="text"],
 .char-15 { width: calc(15em + 8px); }
 .char-20 { width: calc(20em + 8px); }
 .char-30 { width: calc(30em + 8px); }
+.char-180 {
+    width: 60em; /* 设置宽度为60em */
+    height: auto; /* 高度自动适应行数 */
+    resize: none; /* 禁止用户调整输入框大小 */
+    overflow: hidden; /* 隐藏超出部分 */
+    white-space: pre-wrap; /* 保留换行符，并在必要时自动换行 */
+    word-wrap: break-word; /* 在单词内部换行 */
+}
 
 /* 单选按钮样式 */
 .hidden-input {
@@ -327,6 +371,42 @@ input:invalid:focus {
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
     }
+
+    /* 隐藏锁定按钮 */
+    .lock-button {
+        display: none !important;
+    }
+
+    /* 确保锁定的文本区域在打印时显示正常 */
+    .lockable-content.locked textarea {
+        border: none !important;
+        background-color: transparent !important;
+        padding-right: 8px !important; /* 移除为按钮预留的空间 */
+    }
+
+    .lockable-content.unlocked textarea {
+        border: none !important;
+        background-color: transparent !important;
+        padding-right: 8px !important;
+    }
+
+    /* 移除所有交互状态样式 */
+    .lockable-content textarea {
+        border: none !important;
+        background-color: transparent !important;
+        padding-right: 8px !important;
+        resize: none !important; /* 打印时禁用调整大小控件 */
+        overflow: visible !important; /* 确保所有内容都可见 */
+        height: auto !important; /* 自动适应内容高度 */
+        -webkit-appearance: none !important; /* 移除 WebKit 浏览器的默认样式 */
+        appearance: none !important; /* 移除默认样式 */
+    }
+
+    /* 确保完成指示器也不显示 */
+    .completion-indicator {
+        display: none !important;
+    }
+
 }
 
 /* 高对比度模式 */
@@ -391,4 +471,110 @@ input:invalid:focus {
 :focus-visible {
     outline: 2px solid #1a73e8;
     outline-offset: 2px;
+}
+
+/* 日期选择组样式 */
+.date-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.date-select {
+    font-family: "SimSun", serif;
+    font-size: 9.5pt;
+    padding: 4px 8px;
+    border: 1px solid #999;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.year-select {
+    width: 80px;
+}
+
+.month-select, .day-select {
+    width: 80px;
+}
+
+.date-select:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+/* 可锁定内容区域样式 */
+.lockable-content {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* 锁定按钮样式 */
+.lock-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.lock-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.lock-icon {
+    font-size: 30px;
+    line-height: 1;
+}
+
+/* 文本区域样式 */
+.lockable-content textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 8px;
+    font-family: "SimSun", serif;
+    font-size: 9.5pt;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff3f3;
+    transition: all 0.3s ease;
+}
+
+/* 锁定状态样式 */
+.lockable-content.locked textarea {
+    background-color: #fff !important;
+    border-color: #ccc !important;
+    color: #333 !important;
+    cursor: not-allowed;
+}
+
+.lockable-content.locked .lock-icon {
+    color: #4CAF50;
+}
+
+/* 未锁定状态样式 */
+.lockable-content.unlocked textarea {
+    background-color: #fff3f3;
+}
+
+.lockable-content.unlocked .lock-icon {
+    color: #666;
+}
+
+/* 完成状态指示器 */
+.completion-indicator {
+    position: absolute;
+    right: 45px;
+    top: 10px;
 }

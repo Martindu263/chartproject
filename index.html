@@ -380,9 +380,20 @@
             <td class="cell-title">1. 本金</td>
             <td class="cell-content">
                 <div class="form-row">
-                    截至 <input type="text" class="char-10" style="width: 4em;"> 年
-                    <input type="text" class="char-10" style="width: 3em;"> 月
-                    <input type="text" class="char-10" style="width: 3em;"> 日止，
+                    截至<div class="form-row date-group">
+                            <!-- 年份选择 -->
+                            <select class="date-select year-select" data-type="year">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>年
+                            <!-- 月份选择 -->
+                            <select class="date-select month-select" data-type="month">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>月
+                            <!-- 日期选择 -->
+                            <select class="date-select day-select" data-type="day">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>日
+                        </div>止，
                     尚欠本金 <input type="text" class="char-15"> 元
                     (人民币，下同；如外币需特别注明)
                 </div>
@@ -394,9 +405,20 @@
             <td class="cell-title">2. 利息</td>
             <td class="cell-content">
                 <div class="form-row">
-                    截至 <input type="text" class="char-10" style="width: 4em;"> 年
-                    <input type="text" class="char-10" style="width: 3em;"> 月
-                    <input type="text" class="char-10" style="width: 3em;"> 日止，
+                    截至<div class="form-row date-group">
+                            <!-- 年份选择 -->
+                            <select class="date-select year-select" data-type="year">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>年
+                            <!-- 月份选择 -->
+                            <select class="date-select month-select" data-type="month">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>月
+                            <!-- 日期选择 -->
+                            <select class="date-select day-select" data-type="day">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>日
+                        </div>止，
                     欠利息 <input type="text" class="char-15"> 元；
                 </div>
                 <div class="form-row">
@@ -607,17 +629,21 @@
             <th class="section-header" colspan="2">事实和理由</th>
         </tr>
 
-        <!-- 合同详细信息部分 -->
-        <tr>
-            <th class="section-header" colspan="2">合同详细信息</th>
-        </tr>
 
         <!-- 1. 合同签订情况 -->
         <tr>
-            <td class="cell-title">1. 合同签订情况(名称、编号、签订时间、地点等)</td>
-            <td class="cell-content">
-                <div class="form-row">
-                    <textarea class="char-30" style="width: 100%; height: 60px;"></textarea>
+            <td class="cell-title">
+                <!-- 使用 div 包装长文本以便更好地控制换行 -->
+                <div class="cell-title-text">
+                    1. 合同签订情况(名称、编号、签订时间、地点等)
+                </div>
+            </td>
+             <td class="cell-content">
+                <div class="form-row lockable-content" data-section="contract">
+                    <textarea class="char-180 auto-resize" data-field="contract"></textarea>
+                    <button class="lock-button" type="button">
+                        <span class="lock-icon">🔓</span>
+                    </button>
                 </div>
             </td>
         </tr>
@@ -654,12 +680,33 @@
                     </span>
                 </div>
                 <div class="form-row">
-                    约定期限：<input type="text" style="width: 3em;"> 年
-                    <input type="text" style="width: 2em;"> 月
-                    <input type="text" style="width: 2em;"> 日起至
-                    <input type="text" style="width: 3em;"> 年
-                    <input type="text" style="width: 2em;"> 月
-                    <input type="text" style="width: 2em;"> 日止
+                    约定期限：<input type="text" style="width: 3em;"> <div class="form-row date-group">
+                            <!-- 年份选择 -->
+                            <select class="date-select year-select" data-type="year">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>年
+                            <!-- 月份选择 -->
+                            <select class="date-select month-select" data-type="month">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>月
+                            <!-- 日期选择 -->
+                            <select class="date-select day-select" data-type="day">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>日
+                        </div>起至<div class="form-row date-group">
+                            <!-- 年份选择 -->
+                            <select class="date-select year-select" data-type="year">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>年
+                            <!-- 月份选择 -->
+                            <select class="date-select month-select" data-type="month">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>月
+                            <!-- 日期选择 -->
+                            <select class="date-select day-select" data-type="day">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>日
+                        </div>止
                 </div>
             </td>
         </tr>
@@ -680,9 +727,20 @@
             <td class="cell-title">6. 借款提供时间</td>
             <td class="cell-content">
                 <div class="form-row">
-                    <input type="text" style="width: 3em;"> 年
-                    <input type="text" style="width: 2em;"> 月
-                    <input type="text" style="width: 2em;"> 日，
+                    <div class="form-row date-group">
+                            <!-- 年份选择 -->
+                            <select class="date-select year-select" data-type="year">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>年
+                            <!-- 月份选择 -->
+                            <select class="date-select month-select" data-type="month">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>月
+                            <!-- 日期选择 -->
+                            <select class="date-select day-select" data-type="day">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>日
+                        </div>
                     <input type="text" class="char-15"> 元
                 </div>
             </td>
@@ -711,9 +769,20 @@
                 <div class="form-row">已还本金：<input type="text" class="char-15"> 元</div>
                 <div class="form-row">
                     已还利息：<input type="text" class="char-15"> 元，
-                    还息至 <input type="text" style="width: 3em;"> 年
-                    <input type="text" style="width: 2em;"> 月
-                    <input type="text" style="width: 2em;"> 日
+                    还息至 <div class="form-row date-group">
+                            <!-- 年份选择 -->
+                            <select class="date-select year-select" data-type="year">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>年
+                            <!-- 月份选择 -->
+                            <select class="date-select month-select" data-type="month">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>月
+                            <!-- 日期选择 -->
+                            <select class="date-select day-select" data-type="day">
+                                <!-- 选项会通过 JavaScript 动态生成 -->
+                            </select>日
+                        </div>
                 </div>
             </td>
         </tr>
@@ -928,8 +997,11 @@
         <tr>
             <td class="cell-title">17. 其他需要说明的内容(可另附页)</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <textarea class="char-30" style="width: 100%; height: 60px;"></textarea>
+                <div class="form-row lockable-content" data-section="text1">
+                    <textarea class="char-180 auto-resize" data-field="text1"></textarea>
+                    <button class="lock-button" type="button">
+                        <span class="lock-icon">🔓</span>
+                    </button>
                 </div>
             </td>
         </tr>
@@ -938,8 +1010,11 @@
         <tr>
             <td class="cell-title">18. 证据清单(可另附页)</td>
             <td class="cell-content">
-                <div class="form-row">
-                    <textarea class="char-30" style="width: 100%; height: 60px;"></textarea>
+                <div class="form-row lockable-content" data-section="text2">
+                    <textarea class="char-180 auto-resize" data-field="text2"></textarea>
+                    <button class="lock-button" type="button">
+                        <span class="lock-icon">🔓</span>
+                    </button>
                 </div>
             </td>
         </tr>
